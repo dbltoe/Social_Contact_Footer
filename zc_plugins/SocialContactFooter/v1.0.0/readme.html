@@ -1,0 +1,821 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Social Contact Footer &mdash; Read Me</title>
+<style>
+:root{
+  --bg:#ffffff; --fg:#1f2328; --muted:#57606a; --rule:#d8dee4;
+  --panel:#f6f8fa; --accent:#0969da; --warn-bg:#fff8c5; --warn-br:#d4a72c;
+  --code-bg:#f0f2f4;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --rule:#30363d;
+    --panel:#161b22; --accent:#4493f8; --warn-bg:#2d2200; --warn-br:#9e6a03;
+    --code-bg:#161b22;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+     font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2rem 1.25rem 5rem}
+header{border-bottom:1px solid var(--rule);padding-bottom:1.25rem;margin-bottom:1.5rem}
+h1{font-size:1.75rem;margin:0 0 .3rem}
+.tagline{color:var(--muted);margin:0}
+.meta{color:var(--muted);font-size:.875rem;margin:.75rem 0 0}
+.meta a{color:var(--accent)}
+h2{font-size:1.25rem;margin:2.5rem 0 .75rem;padding-top:1.25rem;border-top:1px solid var(--rule)}
+h3{font-size:1.02rem;margin:1.75rem 0 .5rem}
+p,ul,ol{margin:0 0 1rem}
+ul,ol{padding-left:1.4rem}
+li{margin:.3rem 0}
+a{color:var(--accent)}
+code{background:var(--code-bg);padding:.12em .38em;border-radius:4px;
+     font:.87em/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+pre{background:var(--panel);border:1px solid var(--rule);border-radius:6px;
+    padding:.85rem 1rem;overflow-x:auto;margin:0 0 1rem}
+pre code{background:none;padding:0}
+table{border-collapse:collapse;width:100%;margin:0 0 1.25rem;font-size:.94rem;display:block;overflow-x:auto}
+th,td{border:1px solid var(--rule);padding:.45rem .65rem;text-align:left;vertical-align:top}
+th{background:var(--panel);white-space:nowrap}
+td:first-child{white-space:nowrap}
+.note{background:var(--panel);border-left:4px solid var(--accent);
+      border-radius:0 6px 6px 0;padding:.8rem 1rem;margin:0 0 1.25rem}
+.warn{background:var(--warn-bg);border-left:4px solid var(--warn-br);
+      border-radius:0 6px 6px 0;padding:.8rem 1rem;margin:0 0 1.25rem}
+.note p:last-child,.warn p:last-child{margin-bottom:0}
+nav{background:var(--panel);border:1px solid var(--rule);border-radius:6px;
+    padding:.9rem 1rem;margin:0 0 1.5rem}
+nav p{margin:0 0 .4rem;font-weight:600;font-size:.9rem}
+nav ul{margin:0;padding-left:1.2rem;columns:2;column-gap:2rem}
+/* A sub-list must not inherit the two columns, and an entry carrying one must
+   not be split across the column break away from its children. */
+nav ul ul{columns:1;margin:.15rem 0 .35rem;padding-left:1rem}
+nav li{margin:.15rem 0;font-size:.92rem;break-inside:avoid;page-break-inside:avoid}
+footer{margin-top:3rem;padding-top:1.25rem;border-top:1px solid var(--rule);
+       color:var(--muted);font-size:.875rem}
+.layout{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.82rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Social Contact Footer</h1>
+  <p class="tagline">Put your social-media accounts and your blog in front of your customers, from the storefront footer. With a newsletter signup underneath, if you want one.</p>
+  <p class="meta">
+    By My Zen Cart Host (dbltoe) &nbsp;&middot;&nbsp;
+    Version 1.0.0 &nbsp;&middot;&nbsp; Zen Cart v1.5.8 &ndash; v3.0.0 &nbsp;&middot;&nbsp;
+    GPL-2.0 &nbsp;&middot;&nbsp;
+    <a href="https://github.com/dbltoe/Social_Contact_Footer" target="_blank" rel="noopener noreferrer">github.com/dbltoe/Social_Contact_Footer</a>
+  </p>
+</header>
+
+<nav>
+  <p>On this page</p>
+  <ul>
+    <li><a href="#what">What it adds</a></li>
+    <li><a href="#install">Installing</a></li>
+    <li><a href="#quickstart">Quick start</a></li>
+    <li><a href="#general">General settings</a></li>
+    <li><a href="#icons">Icon settings</a></li>
+    <li><a href="#blog">Blog settings</a></li>
+    <li><a href="#newsletter">Newsletter settings</a></li>
+    <li><a href="#optin">Opt-in and the law</a></li>
+    <li><a href="#unsub">Unsubscribe links</a></li>
+    <li><a href="#subscribers">Managing newsletter subscribers</a>
+      <ul>
+        <li><a href="#import">Importing a list from a CSV file</a></li>
+        <li><a href="#audiences">Sending from the Newsletter Manager</a></li>
+        <li><a href="#invite">Invite Registration</a></li>
+      </ul>
+    </li>
+    <li><a href="#privacy">The privacy link</a></li>
+    <li><a href="#artwork">Icon artwork</a></li>
+    <li><a href="#styling">Styling</a></li>
+    <li><a href="#translating">Translating</a></li>
+    <li><a href="#upgrade">Upgrading</a></li>
+    <li><a href="#uninstall">Uninstalling</a></li>
+    <li><a href="#trouble">Troubleshooting</a></li>
+  </ul>
+</nav>
+
+<h2 id="what">What it adds</h2>
+
+<p>One block at the bottom of your storefront, in this order:</p>
+
+<pre class="layout">          [f] [X] [ig] [yt] [in] [rss] [@]
+
+      Visit Our Blog At: Acme Widgets&#39;s Blog
+
+  Would You Like to Receive Acme Widgets&#39;s Newsletter?
+
+            E-Mail Address:   E-Mail Preference:   [ Subscribe ]
+            [____________]    ( ) HTML ( ) TEXT-Only
+
+              How We Handle Your Details</pre>
+<p>The blog and newsletter wording is built from your store name &mdash; there is
+nothing to type. The Subscribe button appears once an address is entered and a
+format chosen.</p>
+
+<p>The icons and the blog link are the point of this plugin. The newsletter
+signup underneath is a useful addition rather than the reason to install it.</p>
+
+<p>Every part is optional, and <strong>the master switch is off on a fresh
+install</strong>, so nothing appears on your storefront until you have set the
+block up and said so.</p>
+
+<p><strong>Only one of the three collects anything.</strong> The icons and the
+blog line are links &mdash; a visitor follows one and reads, and nothing is asked
+of them or recorded. The newsletter is the sole signup, which is why every
+subscriber this plugin has is a newsletter subscriber and there is only one list
+of them.</p>
+
+<ul>
+  <li><strong>Icons</strong> &mdash; twenty networks. Each icon appears only once you
+      supply a link for it, and you enter only the distinguishing part of your
+      address rather than the whole thing.</li>
+  <li><strong>Blog</strong> &mdash; just a link. A blog needs no registration, so this
+      collects nothing and is entirely separate from the newsletter.</li>
+  <li><strong>Newsletter</strong> &mdash; a signup form that asks each subscriber
+      whether they want HTML or TEXT-Only mail, and honours that choice when
+      writing to them. Double opt-in, with neither format pre-selected.</li>
+</ul>
+
+<p>No template file is edited or overridden, so the plugin survives template
+changes and template upgrades.</p>
+
+<h2 id="install">Installing</h2>
+
+<ol>
+  <li>Upload the <code>zc_plugins/SocialContactFooter/</code> directory into the
+      <code>zc_plugins/</code> directory of your store.</li>
+  <li>In your admin, go to <strong>Modules &rarr; Plugin Manager</strong>.</li>
+  <li>Find <em>Social Contact Footer</em> and click <strong>Install</strong>.</li>
+</ol>
+
+<p>The installer creates a configuration group, adds the subscriber table, and
+adds a <strong>Footer Newsletter Subscribers</strong> entry to the Tools menu. If the new
+menus do not appear straight away, log out of the admin and back in &mdash; Zen
+Cart caches the menu structure per session.</p>
+
+<div class="note">
+<p><strong>Plugin Manager will show &ldquo;Social Contact Footer - Mod Not
+Turned On&rdquo; in the Installed list until you switch it on.</strong> That is
+not a fault &mdash; the master switch is off on a fresh install, so nothing
+reaches your storefront while you are still setting things up. Set
+<strong>Enable Social Contact Footer?</strong> to <code>true</code> and the
+notice is gone the next time you open Plugin Manager.</p>
+</div>
+
+<h2 id="quickstart">Quick start</h2>
+
+<p>Everything lives under <strong>Configuration &rarr; Social Contact
+Footer</strong>. To get something on screen:</p>
+
+<ol>
+  <li>Set <strong>Enable Social Contact Footer?</strong> to <code>true</code>.</li>
+  <li>Scroll to the link fields near the bottom and enter your handles &mdash;
+      just <code>YourPageName</code>, not the whole address. Leave the ones you
+      do not use empty.</li>
+  <li>Optionally set <strong>Blog Address:</strong>.</li>
+  <li>Optionally set <strong>Show Newsletter Signup Form?</strong> to
+      <code>true</code>.</li>
+</ol>
+
+<p>Reload your storefront. The block appears in the footer.</p>
+
+<h2 id="general">General settings</h2>
+
+<table>
+<tr><th>Setting</th><th>Default</th><th>What it does</th></tr>
+<tr><td>Enable Social Contact Footer?</td><td><code>false</code></td>
+    <td>Master switch. <code>false</code> hides the whole block without uninstalling.</td></tr>
+<tr><td>Hide On These Pages:</td><td>checkout &amp; login pages</td>
+    <td>Comma-separated <code>main_page</code> values where the block is suppressed. Empty means show everywhere. The default keeps it out of checkout, where distractions cost you orders.</td></tr>
+<tr><td>Block Background Colour:</td><td><em>empty</em></td>
+    <td>Optional. Empty means the block sits on whatever your footer already uses. Setting it (<code>#FFFFFF</code> is the usual choice) gives the block a known surface, so the legibility of the text and icon badges inside becomes something you can rely on rather than hope for. An unrecognised value is ignored rather than guessed at.</td></tr>
+<tr><td>Delete Subscribers When Uninstalling?</td><td><code>false</code></td>
+    <td>Read at uninstall time. <code>false</code> keeps your subscriber list safe from an accidental uninstall.</td></tr>
+</table>
+
+<h2 id="icons">Icon settings</h2>
+
+<table>
+<tr><th>Setting</th><th>Default</th><th>What it does</th></tr>
+<tr><td>Icons Heading:</td><td><em>empty</em></td>
+    <td>Empty uses the translatable default, <em>Follow us</em>. Enter a single space for no heading at all.</td></tr>
+<tr><td>Icons Size On Desktop:</td><td><code>32</code></td>
+    <td>Glyph size in pixels above 767px. Values outside 12&ndash;128 fall back to 32.</td></tr>
+<tr><td>Icons Size On Mobile:</td><td><code>24</code></td>
+    <td>Glyph size at 767px and below. Smaller usually works better &mdash; footer icons compete for a short screen.</td></tr>
+<tr><td>Icons Colour Style:</td><td>Brand colors</td>
+    <td><em>Brand colors</em>, <em>Monochrome</em>, or <em>Inherit</em>. Inherit draws them in your template's own text colour &mdash; usually the right choice for a dark footer.</td></tr>
+<tr><td>Icons Monochrome Colour:</td><td><code>#444444</code></td>
+    <td>Any CSS colour. Only used in Monochrome mode.</td></tr>
+<tr><td>Icons Badge Shape:</td><td>Rounded</td>
+    <td>Circle, Rounded, Square, or Bare (glyph only, no badge).</td></tr>
+<tr><td>Icons Alignment:</td><td>Center</td><td>Left, Center or Right.</td></tr>
+<tr><td>Icons Artwork Source:</td><td>Built-in SVG</td>
+    <td>Built-in glyphs, or your own image files. See <a href="#artwork">Icon artwork</a>.</td></tr>
+<tr><td>Icons Image Directory:</td><td><code>social_contact_footer/</code></td>
+    <td>Directory under your store's <code>images/</code> folder, used in image mode.</td></tr>
+<tr><td>Icons Display Order:</td><td><em>empty</em></td>
+    <td>Comma-separated keys, e.g. <code>facebook,instagram,youtube</code>. Anything left out keeps its default position afterwards.</td></tr>
+<tr><td>Icons Open Links In:</td><td><code>_blank</code></td>
+    <td>New tab, with <code>rel="noopener noreferrer"</code> applied automatically, or same tab.</td></tr>
+</table>
+
+<h3>The link fields</h3>
+
+<p>One field per network, near the bottom of the settings list. <strong>An empty
+field means that icon is not rendered</strong> &mdash; there is no separate
+on/off switch. The network keys are:</p>
+
+<pre><code>facebook   x          instagram  youtube    tiktok
+linkedin   pinterest  threads    bluesky    mastodon
+snapchat   reddit     discord    twitch     telegram
+whatsapp   tumblr     vimeo      rss        email</code></pre>
+
+<p>Values are tidied up before use:</p>
+
+<ul>
+  <li><code>https://</code>, <code>http://</code>, <code>mailto:</code>,
+      <code>tel:</code> and <code>/relative/paths</code> are used as given;</li>
+  <li>a bare address containing <code>@</code> becomes a <code>mailto:</code> link
+      &mdash; handy for the Email field;</li>
+  <li>a bare domain such as <code>x.com/yourhandle</code> gets
+      <code>https://</code> prepended;</li>
+  <li>anything else, including <code>javascript:</code> and <code>data:</code>
+      URLs, is rejected and the icon is simply not shown.</li>
+</ul>
+
+<h2 id="blog">Blog settings</h2>
+
+<p>The blog is <strong>just a link</strong>. Nothing is collected and nobody signs
+up for anything.</p>
+
+<table>
+<tr><th>Setting</th><th>Default</th><th>What it does</th></tr>
+<tr><td>Blog Address:</td><td><em>empty</em></td>
+    <td>Shown under the icons as <em>Visit Our Blog At: &lt;link&gt;</em>. Empty hides the line entirely.</td></tr>
+<tr><td colspan="3"><em>There is no wording setting.</em>
+     The link writes itself from your store name &mdash; <strong>Acme Widgets&#39;s Blog</strong> &mdash; so it stays right if you rename the store.</td></tr>
+</table>
+
+<div class="note">
+<p>The <em>RSS Feed Path:</em> field in the icon section is a different
+thing: it puts an RSS icon in the icon row pointing at your feed. Use either,
+both, or neither.</p>
+</div>
+
+<h2 id="newsletter">Newsletter settings</h2>
+
+<p>The layout is fixed by design: a heading, then one row holding <em>E-Mail Address:</em> and <em>E-Mail Preference:</em> with the Subscribe button beside them, then the privacy link. On a narrow screen the fields stack. There is no name field &mdash; see below.</p>
+
+<table>
+<tr><th>Setting</th><th>Default</th><th>What it does</th></tr>
+<tr><td>Show Newsletter Signup Form?</td><td><code>false</code></td>
+    <td>Shows the form beneath the blog line.</td></tr>
+<tr><td>Show Newsletter Signup Form?</td><td><em>empty</em></td>
+    <td>Empty uses the default, <em>Would You Like to Receive Our Newsletter?</em> A single space shows no heading.</td></tr>
+<tr><td>Ask HTML Or TEXT-Only?</td><td><code>true</code></td>
+    <td>Shows the <em>E-Mail Preference:</em> choice. <strong>Neither option is pre-selected</strong> and there is no &ldquo;default format&rdquo; setting &mdash; see <a href="#optin">Opt-in and the law</a>. Set to <code>false</code> and the question is not asked; everyone is then recorded as <code>TEXT</code>, which is also Zen Cart&rsquo;s own default for a new account.</td></tr>
+<tr><td>Enable Spam Trap?</td><td><code>true</code></td>
+    <td>A hidden honeypot field plus a minimum time-on-form check. Genuine visitors never see it.</td></tr>
+<tr><td>Show Privacy Link?</td><td><code>true</code></td>
+    <td>Shows <em>How We Handle Your Details</em> under the form.</td></tr>
+<tr><td>Privacy Link Destination:</td><td><em>empty</em></td>
+    <td>See <a href="#privacy">The privacy link</a>.</td></tr>
+</table>
+
+<h2 id="optin">Opt-in and the law</h2>
+
+<h3>Double opt-in, and it is not optional</h3>
+
+<p>There is no setting for this. The signup is recorded as <em>pending</em>, a
+confirmation link is emailed, and the person is only marked subscribed once they
+click it. The link is valid for seven days.</p>
+
+<p>Until that link is clicked: nothing is sent to the address, no customer
+account is touched, and you are not notified. An address that is never confirmed
+costs one pending row and nothing else.</p>
+
+<div class="warn">
+<p>In many jurisdictions &mdash; the EU and UK under GDPR and PECR among them
+&mdash; you must be able to <em>prove</em> consent, and a double opt-in record is
+the easiest way to do it. It also protects your sending reputation from people
+typing someone else&rsquo;s address into your footer.</p>
+</div>
+
+<h3>Neither mail format is pre-selected</h3>
+
+<p>Also not configurable. <strong>Pre-selecting a mail format is not lawful in
+the United States</strong> &mdash; a default is not a choice the subscriber made.
+They pick, or nothing is recorded.</p>
+
+<p>This is enforced twice over:</p>
+
+<ul>
+  <li>the form ships with neither option selected, both marked required, and the
+      <strong>Subscribe button does not appear</strong> until an address has been
+      entered <em>and</em> a format chosen;</li>
+  <li>the server refuses a submission with no format, or an unrecognised one. It
+      does not fall back to HTML. Nothing is written and no mail is sent.</li>
+</ul>
+
+<p>The wording &mdash; <strong>HTML</strong> and <strong>TEXT-Only</strong>
+&mdash; matches your customers&rsquo; own Zen Cart account page, because this
+writes to the same preference. The stored value is the four-character token
+<code>TEXT</code>, not the <code>TEXT-Only</code> label.</p>
+
+<h3>What happens when they confirm</h3>
+
+<p>Three things, all automatic and none of them settings:</p>
+
+<ol>
+  <li>The subscriber is marked confirmed.</li>
+  <li>If the address belongs to a customer account, that account&rsquo;s
+      <em>Newsletter</em> flag and email-format preference are updated, so Zen
+      Cart&rsquo;s own Newsletter Manager reaches them. If it does not, they are
+      still reachable through the audiences this plugin registers &mdash; see
+      <a href="#audiences">Sending to them from the Newsletter Manager</a>.</li>
+  <li>You are notified, and the subscriber gets a welcome message carrying their
+      unsubscribe link.</li>
+</ol>
+
+<p>Every message this plugin sends carries an unsubscribe link, and asks the
+reader to add your sending address to their address book. Getting that in front
+of someone early is the single most effective thing a small sender can do to
+stay out of the junk folder.</p>
+
+<h3>The spam trap</h3>
+
+<p>Two independent checks, which behave differently on purpose:</p>
+
+<ul>
+  <li><strong>Honeypot.</strong> A hidden field a person never sees. If it comes
+      back filled, the submission is discarded and the bot is shown the same
+      success message a real signup gets, so it learns nothing.</li>
+  <li><strong>Dwell time.</strong> The form must have been on screen for at least
+      two seconds. This is only a heuristic, so a failure produces an honest
+      "please press Subscribe once more" message rather than pretending to have
+      worked &mdash; silently swallowing a genuine signup would be far worse than
+      one extra click.</li>
+</ul>
+
+<h2 id="unsub">Unsubscribe links</h2>
+
+<p>Every subscriber gets a permanent opt-out address:</p>
+
+<pre><code>https://yourstore.example/index.php?main_page=index&amp;scf_unsubscribe=&lt;token&gt;</code></pre>
+
+<p>The token never changes, so the link keeps working for the life of the
+subscription. It is included in the plugin's own confirmation and welcome
+emails, and exported in the <code>unsubscribe_url</code> column of the admin CSV
+export.</p>
+
+<p><strong>Put it in your newsletter template.</strong> Export the CSV and use the
+<code>unsubscribe_url</code> column as a mail-merge field in whatever you send
+campaigns with. Zen Cart's built-in Newsletter Manager has no merge field for
+it, so if you send through that you will need to send per-subscriber or provide
+a manual unsubscribe route instead.</p>
+
+<p>Visiting the link marks the subscriber unsubscribed, clears the newsletter
+flag on any matching customer account, and redirects to a clean URL so the token
+does not leak through the address bar or a <code>Referer</code> header.</p>
+
+<h2 id="subscribers">Managing newsletter subscribers</h2>
+
+<p><strong>Tools &rarr; Footer Newsletter Subscribers</strong> lists everyone who
+has signed up. You can filter by status, search by E-Mail address, mark somebody
+subscribed or unsubscribed, delete a record, and export the whole list as
+CSV.</p>
+
+<p>Statuses are <em>Awaiting confirmation</em>, <em>Subscribed</em> and
+<em>Unsubscribed</em>.</p>
+
+<div class="note">
+<p><strong>The footer offers exactly one subscription: the newsletter.</strong>
+Nobody subscribes to an icon or to the blog. Those are links &mdash; a visitor
+follows one and reads, and the store learns nothing about them and stores
+nothing. So &ldquo;footer subscriber&rdquo; and &ldquo;newsletter
+subscriber&rdquo; are the same person, and this page is the whole list of
+them.</p>
+<p>A second relationship enters only here, on this page: a newsletter subscriber
+can be invited to become a registered customer. That is the one thing on offer
+beyond the newsletter itself, and it is offered by you rather than asked for in
+the footer.</p>
+</div>
+
+<h3 id="import">Importing a list from a CSV file</h3>
+
+<p>For addresses collected on paper &mdash; typically at a trade show. The
+<strong>Print the Sign-Up Sheet</strong> button on that page gives you a blank
+portrait sheet headed <em>Please Print</em>: twenty-one lines, each with a space for
+an address and a box for HTML or TEXT-Only, both marked required. Take it to the
+event, type what comes back into a spreadsheet, and upload it.</p>
+
+<p>The file needs one column headed <code>email</code>. A second headed
+<code>email_format</code> may hold <code>HTML</code> or <code>TEXT</code>;
+without it everyone gets TEXT, which is Zen Cart&rsquo;s own default. Headings
+go in the first row, in either order, and case does not matter &mdash; the
+wording printed on the sheet works as a heading too. Anything else in the file
+is ignored.</p>
+
+<div class="warn">
+<p><strong>Everyone imported is added as awaiting confirmation and sent a
+confirmation request</strong>, exactly as if they had used the footer form. They
+are not subscribed until they click the link in it, and there is no setting to
+change that.</p>
+<p>This is deliberate. Handwriting gets misread &mdash; <em>rn</em> becomes
+<em>m</em>, a 1 becomes a 7 &mdash; and the address that gets typed in then
+belongs to somebody who never heard of your store. Sending that person one
+confirmation request is a mistake; sending them a newsletter is spam. Keep the
+signed sheets: they are what justifies sending the request, not a substitute for
+the answer.</p>
+</div>
+
+<p>Rows are skipped, and reported with their line number, when the address is
+missing or malformed, when the same address appears twice in one file, and when
+it is already on your list &mdash; an import can never resurrect somebody who
+unsubscribed. Up to 250 rows and 500KB per file; the rest of a larger file is
+reported rather than silently dropped, so split it and upload again.</p>
+
+<h3 id="audiences">Sending to them from the Newsletter Manager</h3>
+
+<p>Zen Cart&rsquo;s <strong>Tools &rarr; Newsletter and Product Notifications
+Manager</strong> picks its recipients from a stored list of audience queries,
+and every stock query reads the <code>customers</code> table alone. A subscriber
+who has never opened an account is not in that table, so without help the
+Newsletter Manager cannot see them &mdash; it will happily report zero recipients
+while this plugin&rsquo;s own list shows people waiting.</p>
+
+<p>Installing adds two audiences to that drop-down. Both hold newsletter
+subscribers, because that is the only thing anyone subscribes to; what separates
+them is whether the person has a customer account.</p>
+
+<table>
+  <thead><tr><th>Audience</th><th>Who it reaches</th></tr></thead>
+  <tbody>
+  <tr><td><strong>Newsletter Subscribers: Everyone (Social Contact Footer)</strong></td>
+      <td>Every confirmed subscriber, account or no account, de-duplicated so
+          nobody gets two copies. This is the one to use for an ordinary
+          newsletter.</td></tr>
+  <tr><td><strong>Newsletter Subscribers: No Account Yet (Social Contact Footer)</strong></td>
+      <td>Only those without a customer account &mdash; the same people this
+          page can invite to register. Useful for a message aimed at them
+          specifically.</td></tr>
+  </tbody>
+</table>
+
+<p>Each address carries the format &mdash; HTML or TEXT-Only &mdash; that the
+subscriber chose in the footer, so Zen Cart sends each person the version they
+asked for. Uninstalling removes both audiences again.</p>
+
+<div class="warn">
+<p>Zen Cart skips a recipient silently when their stored email format is
+<code>NONE</code> or <code>OUT</code>. If one particular person never receives
+anything, check that column on their record before suspecting your mail
+server.</p>
+</div>
+
+<h3 id="invite">Invite Registration</h3>
+
+<p>Subscribers who have no customer account can be invited to create one, singly
+with <strong>Invite to Create an Account</strong> on their row, or in batches of
+up to fifty with <strong>Invite All Eligible Subscribers to Create an
+Account</strong>. The <em>Account</em> column shows where each person stands:
+<em>No</em>, <em>Invited</em>, or <em>Registered</em>.</p>
+
+<p>Only <strong>confirmed</strong> subscribers with no existing account are
+eligible. Someone who has already been invited is not invited again by the batch
+button.</p>
+
+<div class="note">
+<p><strong>The invite button disappears once the invitation has gone out, and
+that is correct</strong> &mdash; the account already exists, and a second
+invitation must not create a second one. In its place the row offers
+<strong>Send the Invitation Again</strong>, for as long as the account is still
+pending.</p>
+<p>Re-sending issues a <em>new</em> password and a <em>new</em> link. That is not
+a choice: the original password was hashed on the way in and the plaintext was
+never kept, so there is nothing to repeat. It is safe precisely because the
+account is still pending &mdash; nobody has signed in with the old one. The
+previous link stops working.</p>
+<p>Because of that, the re-send is a <strong>different message</strong>, not the
+first one sent twice. If the original was merely slow rather than lost, the
+subscriber is now holding both, and the second one says plainly that the earlier
+password and link no longer work &mdash; before it gives them the new ones.
+Without that they would try the older password, fail, and give up.</p>
+<p>To help you judge that, the <em>Account</em> column shows <strong>when</strong>
+&mdash; &ldquo;Invited 3 minutes ago&rdquo;, with the exact timestamp on hover.
+If the last one went out within the past ten minutes, the confirmation says so
+in stronger terms, because mail routinely takes a few minutes and a second press
+would invalidate a password that is still on its way. It is a warning, not a
+block; you can always go ahead.</p>
+
+<p>Every button on the page also refuses a second click while the first is still
+being processed, so an impatient double-click cannot become two invitations.
+(Export is the exception &mdash; it downloads without leaving the page, and
+running it twice costs nothing.)</p>
+
+<p>Once the subscriber accepts, both buttons are gone for good &mdash; the
+password is theirs, and Zen Cart&rsquo;s own <strong>Customers</strong> page
+handles them from then on.</p>
+</div>
+
+<p>An invitation:</p>
+
+<ol>
+  <li>creates a customer account in <strong>pending</strong> state
+      (<code>customers_authorization</code> = 3), which can browse but cannot
+      order;</li>
+  <li>sets a generated password on it;</li>
+  <li>emails the subscriber that password and one link. Following the link
+      activates the account and lands them on the login page.</li>
+</ol>
+
+<p>The account stays pending, and unusable, until that link is followed, so an
+invitation that is ignored leaves nothing behind but a dormant record. The
+message says as much, and carries the subscriber&rsquo;s permanent unsubscribe
+link like every other message this plugin sends. Ignoring an invitation does not
+change anything about their subscription.</p>
+
+<p>The mail is sent through <code>zen_mail()</code> in whichever format the
+subscriber chose, so it follows your store&rsquo;s own email configuration. It
+tells the recipient to change the password once they are signed in.</p>
+
+<h2 id="privacy">The privacy link</h2>
+
+<p>Left at its default, <em>How We Handle Your Details</em> links to Zen Cart's
+built-in <strong>Privacy Notice</strong> page
+(<code>index.php?main_page=privacy</code>).</p>
+
+<p><strong>To read or change what that page says:</strong> go to
+<strong>Tools &rarr; Define Pages Editor</strong> and choose
+<code>define_privacy</code>. Stock Zen Cart ships generic boilerplate there. It
+is worth rewriting to describe what your store actually does, particularly now
+that you are collecting email addresses through the footer.</p>
+
+<p>To point the link somewhere else, put the destination into <strong>Privacy
+Link Destination:</strong>. Prefer an on-site target &mdash; a Zen Cart page name
+such as <code>page_3</code>, or a path such as <code>policies/privacy/</code>
+&mdash; because a relative address survives a domain change and an
+http-to-https move. A full <code>https://</code> address should be a last
+resort.</p>
+
+<h2 id="artwork">Icon artwork</h2>
+
+<p>The bundled glyphs are <strong>simplified original drawings, not the official
+brand logos</strong>. They are deliberately plain, monochrome and geometric so
+they read well at small sizes and carry no licensing baggage. They are inline
+SVG, so there are no external requests, no icon font and no CDN.</p>
+
+<h3>Using your own images</h3>
+
+<ol>
+  <li>Create <code>images/social_contact_footer/</code> in your store root.</li>
+  <li>Add one file per network named after its key &mdash; <code>facebook.svg</code>,
+      <code>youtube.png</code> and so on. The plugin tries <code>.svg</code>,
+      <code>.png</code>, <code>.webp</code>, <code>.gif</code> then
+      <code>.jpg</code>. Networks with no matching file are skipped.</li>
+  <li>Set <strong>Icons Artwork Source:</strong> to <em>Image files</em>.</li>
+</ol>
+
+<div class="warn">
+<p>Most platforms publish a brand-assets page with approved artwork and usage
+rules. Complying with those terms is the store owner's responsibility.</p>
+</div>
+
+<h2 id="styling">Styling</h2>
+
+<p>The block ships a real stylesheet, linked into the page head. Your template
+stays in charge of it, and there are three ways in.</p>
+
+<h3>Retune the variables</h3>
+
+<p>Almost everything is driven by custom properties. Add a rule to any
+stylesheet your template already loads:</p>
+
+<pre><code>#scfWrapper {
+    --scf-gap: 1.2em;        /* space between icons */
+    --scf-radius: 50%;       /* badge corner rounding */
+    --scf-row-gap: 2em;      /* space above and below the block */
+    --scf-field-gap: 1.5em;  /* space between newsletter fields */
+}</code></pre>
+
+<h3>Add ordinary overrides</h3>
+
+<p>Zen Cart auto-loads every <code>style*.css</code> in your template&rsquo;s css
+folder, and those load <em>after</em> the plugin&rsquo;s, so plain rules win with
+no <code>!important</code> needed.</p>
+
+<h3>Replace the file</h3>
+
+<p>Copy it to
+<code>includes/templates/YOUR_TEMPLATE/css/social_contact_footer.css</code> and
+the plugin links yours instead of its own. Nothing else changes &mdash; no admin
+setting, no file edit. The same rule applies to the small script that gates the
+Subscribe button, in your template&rsquo;s <code>jscript/</code> folder.</p>
+
+<p>There is no setting to switch the stylesheet off: it carries the block&rsquo;s
+layout, so without it the markup collapses. Overriding replaces those rules
+rather than removing them. Colours and fonts are deliberately not set, so the
+block inherits your footer.</p>
+
+<p>The stacking breakpoint for the newsletter row is
+<code>max-width: 991px</code>, chosen to cover tablets in both orientations as
+well as phones.</p>
+
+<div class="warn">
+<p>Two things not to change. Keep <code>.scf-hp</code> hidden &mdash; that is the
+spam trap, and if a visitor can see it they will fill it in and be silently
+discarded. And keep the rule that hides the real radio input using
+<code>clip</code> rather than <code>display: none</code>: the visible radio is
+drawn by the stylesheet as <code>.scf-mark</code>, but the input underneath is
+still what carries keyboard focus and screen-reader semantics.</p>
+</div>
+
+<h3>Why the radio is drawn rather than native</h3>
+
+<p>Zen Cart templates very commonly hide native radio inputs so they can draw
+their own &mdash; <code>display: none !important</code>, the off-screen
+<code>left: -9999px</code> trick, or a blanket <code>appearance: none</code>.
+Those rules are written for the template&rsquo;s own forms but they match this
+one too, and the result is the format choice rendering as the bare words
+&ldquo;HTML&nbsp;&nbsp;TEXT-Only&rdquo; with no control at all.</p>
+
+<p>So the plugin draws the indicator itself. There is no native radio left for a
+template to hide, and <code>.scf-mark</code> is a class name nothing else
+targets. The ring uses <code>currentColor</code>, so it is legible on a dark
+footer and a light one alike.</p>
+
+<h2 id="translating">Translating</h2>
+
+<p>All storefront wording lives in one file inside the plugin:</p>
+
+<pre><code>catalog/includes/languages/english/extra_definitions/lang.social_contact_footer.php</code></pre>
+
+<p>Copy it into the matching directory for your language and translate the
+values. Keep the <code>lang.</code> prefix and the array format &mdash; that is
+what Zen Cart v1.5.8 through v3.0.0 all understand.</p>
+
+<p>The blog link and the newsletter heading are built from your store name, so
+there is nothing for you to type and nothing to keep in step if you rename the
+store:</p>
+
+<table>
+<tr><th>Constant</th><th>Default</th><th>Produces</th></tr>
+<tr><td>SCF_STORE_POSSESSIVE</td><td><code>%s&#39;s</code></td><td>Acme Widgets&#39;s</td></tr>
+<tr><td>SCF_BLOG_LINK_PATTERN</td><td><code>%s Blog</code></td><td>Acme Widgets&#39;s Blog</td></tr>
+<tr><td>SCF_NEWSLETTER_HEADING</td><td><code>Would You Like to Receive %s Newsletter?</code></td><td>&hellip;</td></tr>
+</table>
+
+<p>The possessive is its own constant so a translator can change the rule, drop
+it, or special-case a name already ending in &ldquo;s&rdquo; &mdash; English
+style guides disagree, and many languages do not form possessives this way at
+all.</p>
+
+<p>The format labels <code>HTML</code> and <code>TEXT-Only</code> match Zen
+Cart&rsquo;s own account page, because this writes to the same preference. The
+stored value is the four-character token <code>TEXT</code> &mdash; that column
+is <code>varchar(4)</code>, so a longer label would be truncated.</p>
+
+<div class="warn">
+<p>The email templates are passed through <code>sprintf()</code>, so a literal
+percent sign must be written as <code>%%</code>. Safer still, avoid them
+&mdash; use <code>font-size:0.9em</code> rather than a percentage, as the
+bundled strings do. A stray <code>%</code> produces a fatal error when the mail
+is sent.</p>
+</div>
+
+<h2 id="upgrade">Upgrading</h2>
+
+<ol>
+  <li>Upload the new version directory alongside the old one, for example
+      <code>zc_plugins/SocialContactFooter/v1.1.0/</code>. <strong>Do not delete
+      the old one yet</strong> &mdash; Plugin Manager needs both to offer the
+      upgrade.</li>
+  <li>Go to <strong>Modules &rarr; Plugin Manager</strong> and click
+      <strong>Upgrade</strong>.</li>
+  <li>Once it reports success, the old version directory can be deleted.</li>
+</ol>
+
+<p><strong>Your settings survive.</strong> Configuration records are written so
+that the value belongs to you and is never reset by an upgrade, while the label,
+help text, ordering and input type are refreshed to the current version. Settings
+that no longer exist are removed, so nothing is left orphaned in your list.</p>
+
+<p>Uninstall followed by Install gives the same result if you prefer it. Your
+subscriber table is not dropped either way unless you have opted in.</p>
+
+<h2 id="uninstall">Uninstalling</h2>
+
+<p><strong>Modules &rarr; Plugin Manager &rarr; Social Contact Footer &rarr;
+Uninstall.</strong> This removes the configuration group, all settings and both
+admin menu entries.</p>
+
+<p><strong>Your subscriber list is kept by default</strong>, so an accidental
+uninstall cannot destroy addresses people trusted you with. If you genuinely
+want it gone, set <strong>Delete Subscribers When Uninstalling?</strong> to
+<code>true</code> <em>before</em> uninstalling.</p>
+
+<p>Uninstalling does not reset the newsletter flag on customer accounts. Those
+are ordinary Zen Cart subscriptions once set, managed from
+<strong>Customers</strong> or the Newsletter Manager.</p>
+
+<h2 id="trouble">Troubleshooting</h2>
+
+<h3>The block does not appear</h3>
+<ul>
+  <li>Is <strong>Enable Social Contact Footer?</strong> set to <code>true</code>?</li>
+  <li>Have you supplied at least one link, a blog address, or switched the
+      newsletter form on? With none of those there is nothing to render.</li>
+  <li>Is the current page named in <strong>Hide On These Pages:</strong>? Checkout
+      and login pages are excluded by default.</li>
+</ul>
+
+<h3>It appears at the very bottom of the page rather than in the footer</h3>
+<p>Your template's <code>tpl_footer.php</code> does not fire the newer in-footer
+notifier, so the plugin is using its end-of-page fallback. Either update the
+template from a current Zen Cart release, or add this where you want the block
+in your <code>tpl_footer.php</code>:</p>
+<pre><code>&lt;?php $zco_notifier-&gt;notify('NOTIFY_FOOTER_AFTER_NAVSUPP', []); ?&gt;</code></pre>
+
+<h3>The block appears but looks unstyled</h3>
+<p>The stylesheet is not loading. View source and check this does not 404:</p>
+<pre><code>zc_plugins/SocialContactFooter/v1.0.0/catalog/includes/templates/template_default/css/social_contact_footer.css</code></pre>
+<p>Zen Cart&rsquo;s shipped <code>zc_plugins/.htaccess</code> denies everything
+then explicitly re-allows <code>.css</code>, <code>.js</code> and
+<code>.html</code>, so on a normal Apache host this works. If your server
+ignores <code>.htaccess</code> &mdash; nginx, LiteSpeed without compatibility
+mode, or Apache with <code>AllowOverride None</code> plus its own deny rule
+&mdash; you may need a rule permitting those types under
+<code>zc_plugins/</code>.</p>
+
+<h3>The format radio buttons are invisible</h3>
+<p>They should not be &mdash; the visible indicator is drawn by the plugin&rsquo;s
+own stylesheet precisely because many templates hide native radios. If you see
+the words <em>HTML</em> and <em>TEXT-Only</em> with no rings beside them, the
+stylesheet is not loading; see above.</p>
+
+<h3>The Subscribe button never hides</h3>
+<p>The gate script is not loading. Same check, for:</p>
+<pre><code>zc_plugins/SocialContactFooter/v1.0.0/catalog/includes/templates/template_default/jscript/social_contact_footer.js</code></pre>
+<p>This is deliberately not fatal. The button is rendered visible by the server
+and the script is the only thing that hides it, so the form still works &mdash;
+and the server still refuses a signup with no format chosen.</p>
+
+<h3>Confirmation emails are not arriving</h3>
+<p>The plugin uses Zen Cart's own mail function, so it obeys
+<strong>Configuration &rarr; E-Mail Options</strong>. Check that <em>Send
+E-Mails</em> is <code>true</code>, and use the email test tool under Tools to
+confirm the store can send mail at all. Turning on email archiving lets you see
+exactly what was generated.</p>
+<p>Every message the plugin sends asks the recipient to add your sending address
+to their address book, which is the most effective thing a small sender can do
+about junk folders &mdash; but it only helps once the first message arrives.</p>
+
+<h3>The Newsletter Manager shows no subscribers, but the plugin lists some</h3>
+<p>You are on one of Zen Cart's stock audiences, which read the
+<code>customers</code> table alone and therefore cannot see a subscriber who has
+no account. In <strong>Tools &rarr; Newsletter and Product Notifications
+Manager</strong>, choose <strong>Newsletter Subscribers: Everyone (Social Contact
+Footer)</strong> instead. If neither of this plugin's audiences is in that
+drop-down, re-install from Plugin Manager; that is what registers them. See
+<a href="#audiences">Sending to them from the Newsletter Manager</a>.</p>
+<p>If the list is right but one particular person never receives anything, check
+their stored email format. Zen Cart skips a recipient silently when it is
+<code>NONE</code> or <code>OUT</code>.</p>
+
+<h3>A subscriber cannot be invited to create an account</h3>
+<p>Only <strong>confirmed</strong> subscribers who do not already have a customer
+account can be invited. Somebody awaiting confirmation, already unsubscribed, or
+already holding an account is not eligible &mdash; the <em>Account</em> column
+tells you which.</p>
+
+<h3>Admin menu entries are missing after installing</h3>
+<p>Log out and back in. If they are still missing, uninstall and re-install from
+Plugin Manager &mdash; that rewrites the menu records.</p>
+
+<footer>
+  <p><strong>Need help?</strong> Ask in the
+  <a href="https://www.zen-cart.com/showthread.php/231169-Social-Contact-Footer?p=1412052#post1412052" target="_blank" rel="noopener noreferrer">Forum Support Thread</a>
+  at zen-cart.com. If something is broken rather than unclear, a
+  <a href="https://github.com/dbltoe/Social_Contact_Footer/issues" target="_blank" rel="noopener noreferrer">GitHub issue</a>
+  is easier to track.</p>
+  <p>Social Contact Footer 1.0.0 &mdash; GPL-2.0, the same licence Zen Cart uses.
+  Source, issues and newer versions:
+  <a href="https://github.com/dbltoe/Social_Contact_Footer" target="_blank" rel="noopener noreferrer">github.com/dbltoe/Social_Contact_Footer</a></p>
+  <p>The bundled icon glyphs are original simplified drawings and are not the
+  official logos of the services they represent. All trademarks belong to their
+  respective owners, who are not affiliated with this plugin and do not endorse
+  it.</p>
+</footer>
+
+</div>
+</body>
+</html>

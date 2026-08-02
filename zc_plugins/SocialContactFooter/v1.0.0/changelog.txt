@@ -1,0 +1,142 @@
+Social Contact Footer -- changelog
+==================================
+
+v1.0.0
+------
+Initial release.
+
+Runs on Zen Cart v1.5.8 through v3.0.0 and PHP 7.4 through 8.5 from a single
+codebase, verified against all six release branches.
+
+The plugin exists to put a store's social-media accounts and blog in front of
+its customers. The newsletter signup is an addition rather than the point.
+
+Storefront
+- Off on a fresh install. The master switch defaults to false, so a
+  half-configured block never goes live while the owner is still setting it up.
+  While it is off, Plugin Manager shows "Mod Not Turned On" beside the plugin
+  name and a red banner in the info panel naming the setting to change. The name
+  suffix is plain text by necessity: plugin_control.name is varchar(64) and the
+  list echoes it unescaped, so markup there could be truncated mid-tag. In the
+  banner #D9534F carries the headline and the rule, where 3:1 is the bar it
+  clears; the sentence below uses a darker red, because #D9534F cannot reach
+  4.5:1 as body text against any background that exists.
+- Footer block rendered through NOTIFY_FOOTER_AFTER_NAVSUPP (Zen Cart v2.1+)
+  with a NOTIFY_FOOTER_END fallback for older carts and older templates. No
+  template file is edited or overridden.
+- Twenty networks, each hidden until a link is supplied: Facebook, X,
+  Instagram, YouTube, TikTok, LinkedIn, Pinterest, Threads, Bluesky, Mastodon,
+  Snapchat, Reddit, Discord, Twitch, Telegram, WhatsApp, Tumblr, Vimeo, RSS,
+  and a contact icon.
+- Link fields ask only for the distinguishing part of an address -- the page
+  name, the handle, the subreddit -- because a short fragment is far harder to
+  get wrong. A complete https:// address still works where a profile does not
+  fit the usual pattern.
+- The contact icon needs no entry at all: it uses the store's own Contact Us
+  page or owner address, chosen by a setting.
+- On-site link forms are first-class throughout: a Zen Cart page name, a store
+  folder, or a relative path is preferred over a full address, because those
+  survive a domain change and an http-to-https move.
+- Blog line is just a link, entirely separate from the newsletter. The wording
+  writes itself from the store name, so there is nothing to type.
+- Separate desktop and mobile icon sizes, four badge shapes, brand /
+  monochrome / inherited colour, alignment, display order and link target.
+- Optional block background colour, so the contrast of everything inside the
+  block becomes determinable rather than dependent on the template.
+
+Newsletter
+- Double opt-in, not optional. Nothing is sent, no customer account is touched
+  and the store owner is not notified until the confirmation link is clicked.
+- Neither mail format is pre-selected, and that is not configurable --
+  pre-selecting one is not lawful in the United States. Enforced in the markup
+  and again server-side, which refuses a submission with no format rather than
+  defaulting to HTML.
+- The Subscribe button does not appear until an address is entered and a format
+  chosen. Implemented as progressive enhancement: the server renders the button
+  visible, so a visitor without JavaScript still gets a working form.
+- The visible radio indicator is drawn by the plugin's stylesheet. Zen Cart
+  templates commonly hide native radio inputs, which left the choice rendering
+  as bare words with no control; the real input is retained for submission,
+  focus and screen-reader semantics.
+- Format wording matches Zen Cart's own account page (HTML / TEXT-Only),
+  because this writes to the same customers_email_format preference.
+- No name field. The form asks for an address and a format preference and
+  nothing else. A single free-text name does not fit Zen Cart's own first-name
+  / last-name convention, and nothing downstream uses one: mail goes to an
+  address, and an invited customer enters their own details on registering.
+- Wording follows Zen Cart's own "E-Mail" spelling throughout.
+- Honeypot plus dwell-time spam trap. The honeypot fails silently to the bot;
+  the dwell check reports honestly, because swallowing a real signup would be
+  worse than one extra click.
+- Confirmed subscribers whose address matches a customer account have that
+  account's newsletter flag and format preference updated.
+- Two audience queries are registered at install so Zen Cart's Newsletter
+  Manager can also reach confirmed subscribers who have no customer account.
+  Every stock audience query reads the customers table alone, so without these
+  such a subscriber is invisible to it: the Manager reports no recipients while
+  the plugin's own list shows people waiting. Both are removed on uninstall.
+  They are named by whether the person holds a customer account rather than by
+  what they subscribed to -- the footer's only signup is the newsletter, so
+  there is no other sort of subscriber to tell them apart from.
+- Permanent per-subscriber unsubscribe links. Every message the plugin sends
+  carries one, and they are exported in the admin CSV.
+- Every message asks the reader to add the store's sending address to their
+  address book.
+
+Admin
+- Tools -> Footer Newsletter Subscribers: filter, search, change status, delete,
+  export CSV including unsubscribe URLs. The footer's only signup is the
+  newsletter, so this one page is the whole subscriber list.
+- CSV import for addresses collected on paper, with a printable portrait
+  sign-up sheet in pdf/. Everyone imported is created pending and sent the same
+  confirmation request the storefront form sends -- there is no way to
+  bulk-import an already-subscribed person. Rows are skipped and reported by
+  line number when the address is missing, malformed, duplicated in the file,
+  or already known; an import cannot resurrect an unsubscribed person. Capped
+  at 250 rows and 500KB per upload, with the remainder reported.
+- Every piece of text on both admin pages is at least 1.2rem, form controls and
+  code spans included. The Configuration page is reached through a plugin
+  configuration_*.php stylesheet that prints nothing unless this plugin's own
+  settings group is the one being viewed, so no other group is restyled.
+- The subscribers list drops its Name column; nothing collects a name.
+- Invite Registration. Confirmed subscribers with no customer account can be
+  invited to open one, singly or in batches of up to fifty. The invitation
+  creates a pending account (customers_authorization 3: may browse, may not
+  order), sets a generated password, and emails that password with a single
+  link that activates the account and lands on the login page. The account is
+  unusable until the link is followed, so an ignored invitation leaves a
+  dormant record and changes nothing about the subscription.
+- Send the Invitation Again. The invite button correctly disappears once an
+  invitation has gone out -- the account exists, and a second invitation must
+  not create a second one -- so the row offers a re-send instead, for as long
+  as the account is pending. It issues a new password and a new link, because
+  the original password was hashed on the way in and never kept; safe because
+  nobody has signed in with the old one. The previous link stops working.
+  Sent as its own message rather than the first one repeated: it carries a
+  different password by necessity, so it says the earlier password and link no
+  longer work before giving the new ones. A subscriber whose first invitation
+  was slow rather than lost holds both, and would otherwise try the older
+  password, fail, and give up.
+- The Account column shows when an invitation went out ("Invited 3 minutes
+  ago", exact timestamp on hover), because that is the fact the decision to
+  send again depends on. Inside ten minutes the confirmation warns more firmly:
+  mail takes time, and a second press invalidates a password still in flight.
+  A warning, not a block.
+- Every writing button on that page refuses a second click while the first is
+  in progress, so a double-click cannot become two invitations. Export is
+  exempt: it downloads without navigating away, and repeating it costs nothing.
+- Self-contained readme.html shipped with the plugin and linked, with the
+  GitHub project page, as buttons in the Plugin Manager info panel beside
+  Install, Uninstall and Disable. Both work before installation.
+- Idempotent installer. Configuration values belong to the store owner and are
+  never reset by an upgrade; labels, help text and ordering are refreshed to
+  the current version. Retired settings are removed automatically.
+- The subscriber table is preserved on uninstall unless the owner opts out.
+
+Accessibility
+- Checked against WCAG 2.1 AA, including contrast computed from the declared
+  colours in both colour schemes of the HTML manual.
+- One documented deviation: four brand badges (WhatsApp, Vimeo, Telegram, RSS)
+  use white glyphs on light official colours and fall below the 3:1 non-text
+  minimum. Brand fidelity was chosen; the Monochrome and Inherit icon styles
+  resolve it.

@@ -1,0 +1,386 @@
+/**
+ * Social Contact Footer -- storefront stylesheet.
+ *
+ * HOW TO TAKE THIS OVER
+ * ---------------------
+ * Copy this file to your own template:
+ *
+ *     includes/templates/YOUR_TEMPLATE/css/social_contact_footer.css
+ *
+ * The plugin looks there first and, if it finds a copy, links yours instead of
+ * this one. Nothing else needs changing -- no admin setting, no file edit.
+ *
+ * To adjust rather than replace, add rules to any stylesheet your template
+ * already loads: Zen Cart auto-loads every `style*.css` in your template's css
+ * folder, and those load after this file, so they win.
+ *
+ * Almost everything is driven by the custom properties below. The plugin sets
+ * the size ones from your admin settings; the rest are here so a template can
+ * retune the block with a couple of declarations, e.g.
+ *
+ *     #scfWrapper { --scf-gap: 1.2em; --scf-radius: 50%; }
+ *
+ * Colours and fonts are deliberately NOT set: the block inherits from your
+ * template so it matches the rest of your footer.
+ *
+ * @package  SocialContactFooter
+ * @license  http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ */
+
+#scfWrapper {
+    /* --scf-icon-size is written inline by the plugin from the Desktop and
+       Mobile size settings; this is only a fallback. */
+    --scf-icon-size: 32px;
+    --scf-icon-pad: 0.4em;
+    --scf-radius: 22%;
+    --scf-gap: 0.6em;
+    --scf-row-gap: 1.5em;
+    --scf-field-gap: 1em;
+    --scf-max-form-width: 46em;
+
+    /* Optional block background, set from the admin. Left transparent the
+       block inherits whatever the template's footer uses -- which is fine, but
+       unknowable, so the contrast of the text and icon badges inside cannot be
+       guaranteed. Setting it (#FFFFFF is the suggestion) makes the whole block
+       a known surface, which is what allows the accessibility of everything
+       inside it to be stated rather than hoped for. */
+    --scf-bg: transparent;
+    --scf-bg-pad: 1em;
+
+    margin: var(--scf-row-gap) auto;
+    padding: var(--scf-bg-pad) 0;
+    line-height: 1.5;
+    background-color: var(--scf-bg);
+}
+
+/* When a background has been chosen, pad the sides too so the colour reads as
+   a deliberate band rather than a stripe clipped to the text. */
+#scfWrapper.scf-has-bg {
+    padding-left: var(--scf-bg-pad);
+    padding-right: var(--scf-bg-pad);
+}
+
+/* ---------------------------------------------------------------- headings */
+
+#scfWrapper .scf-heading {
+    margin: 0 0 0.5em;
+    font-size: 1.05em;
+}
+
+/* --------------------------------------------------------------- alignment */
+
+#scfWrapper.scf-align-left { text-align: left; }
+#scfWrapper.scf-align-center { text-align: center; }
+#scfWrapper.scf-align-right { text-align: right; }
+
+/* ------------------------------------------------------------------- icons */
+
+#scfWrapper .scf-icon-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--scf-gap);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#scfWrapper.scf-align-center .scf-icon-list { justify-content: center; }
+#scfWrapper.scf-align-right .scf-icon-list { justify-content: flex-end; }
+#scfWrapper.scf-align-left .scf-icon-list { justify-content: flex-start; }
+
+#scfWrapper .scf-icon-item {
+    margin: 0;
+    padding: 0;
+}
+
+#scfWrapper .scf-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: content-box;
+    width: var(--scf-icon-size);
+    height: var(--scf-icon-size);
+    padding: var(--scf-icon-pad);
+    text-decoration: none;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+#scfWrapper .scf-icon:hover,
+#scfWrapper .scf-icon:focus-visible {
+    opacity: 0.82;
+    transform: translateY(-2px);
+}
+
+#scfWrapper .scf-icon svg,
+#scfWrapper .scf-icon img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+#scfWrapper .scf-icon img { object-fit: contain; }
+
+#scfWrapper .scf-shape-circle .scf-icon { border-radius: 50%; }
+#scfWrapper .scf-shape-rounded .scf-icon { border-radius: var(--scf-radius); }
+#scfWrapper .scf-shape-square .scf-icon { border-radius: 0; }
+
+#scfWrapper .scf-shape-bare .scf-icon {
+    padding: 0;
+    background: none !important;
+}
+
+/* -------------------------------------------------------------- blog line */
+
+#scfWrapper .scf-blog {
+    margin: var(--scf-field-gap) 0 0;
+}
+
+/* -------------------------------------------------------- newsletter form */
+
+#scfWrapper .scf-subscribe {
+    margin-top: var(--scf-row-gap);
+}
+
+#scfWrapper .scf-intro {
+    margin: 0 0 0.75em;
+}
+
+#scfWrapper .scf-form {
+    display: inline-block;
+    text-align: left;
+    max-width: var(--scf-max-form-width);
+    width: 100%;
+}
+
+/* One row on desktop; stacks at the breakpoint further down. */
+#scfWrapper .scf-fields {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: var(--scf-field-gap);
+}
+
+#scfWrapper .scf-field {
+    flex: 1 1 12em;
+    margin: 0;
+    min-width: 0;
+}
+
+#scfWrapper .scf-field-format { flex: 0 1 auto; }
+
+/* The Subscribe button sits inline with the fields and is sized by its own
+   text, so it must not pick up the `flex: 1 1 12em` the other fields use.
+   The class here has to match what the renderer emits -- scf-field-action. */
+#scfWrapper .scf-field-action {
+    flex: 0 0 auto;
+    align-self: flex-end;
+}
+
+#scfWrapper .scf-label,
+#scfWrapper .scf-legend {
+    display: block;
+    margin: 0 0 0.2em;
+    padding: 0;
+    font-weight: 600;
+}
+
+#scfWrapper .scf-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.45em 0.6em;
+}
+
+#scfWrapper fieldset.scf-field {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+#scfWrapper .scf-radios {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.2em 1.1em;
+    padding: 0.45em 0;
+}
+
+#scfWrapper .scf-radio {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    margin: 0;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+/* THE FORMAT RADIO BUTTONS -- read this before changing anything below.
+ *
+ * The visible radio is drawn here, by us, as `.scf-mark`. The real
+ * <input type="radio"> is still present and still does all the work: it is
+ * what the form submits, what receives focus, what arrow keys move between,
+ * and what a screen reader announces. It is simply not what you see.
+ *
+ * WHY. Zen Cart templates very commonly hide native radio inputs so they can
+ * draw their own -- `input[type="radio"] { display: none !important }`, or the
+ * off-screen `position: absolute; left: -9999px` trick, or a blanket
+ * `appearance: none`. Those rules are written for the template's own forms but
+ * they match ours too, and the result was the format choice rendering as the
+ * bare words "HTML  TEXT-Only" with no control at all -- while the label still
+ * lit up on hover, which made it look like a cosmetic quirk rather than a
+ * broken form. Forcing the native control back with !important worked, but it
+ * only ever won the arms race one rule at a time.
+ *
+ * Drawing the control ourselves ends the argument: there is no native radio
+ * left for a template to hide, and `.scf-mark` is our own class name that
+ * nothing else will target.
+ *
+ * The input is hidden with the standard accessible pattern -- clipped to a
+ * single pixel rather than `display: none` -- so it stays focusable and stays
+ * in the accessibility tree.
+ */
+#scfWrapper .scf-radio input[type="radio"] {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+    clip: rect(0 0 0 0) !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
+}
+
+/* The visible control. currentColor is used deliberately: the surrounding text
+   is legible against the footer by definition, so a ring in the same colour is
+   legible too -- on a dark footer and a light one alike, with no setting. */
+#scfWrapper .scf-radio .scf-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    width: 1em;
+    height: 1em;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    background: transparent;
+}
+
+#scfWrapper .scf-radio .scf-mark::after {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 50%;
+    background-color: currentColor;
+    transform: scale(0);
+    transition: transform 0.12s ease;
+}
+
+/* Selected. This is the whole point of the exercise: the state is now shown by
+   an element we control, so it cannot be styled away by a template. */
+#scfWrapper .scf-radio input[type="radio"]:checked + .scf-mark::after {
+    transform: scale(1);
+}
+
+/* Keyboard focus has to remain obvious even though the real input is clipped,
+   so the ring is drawn on the mark instead. */
+#scfWrapper .scf-radio input[type="radio"]:focus + .scf-mark,
+#scfWrapper .scf-radio input[type="radio"]:focus-visible + .scf-mark {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+#scfWrapper .scf-radio .scf-radio-text {
+    line-height: 1;
+}
+
+/* The Subscribe button is hidden by social_contact_footer.js until an email
+   address has been entered and a mail format chosen. Some template resets
+   clobber the built-in [hidden] behaviour, so it is restated here -- without
+   this the gate silently stops working. */
+#scfWrapper [hidden] {
+    display: none !important;
+}
+
+#scfWrapper .scf-privacy {
+    margin: 0.6em 0 0;
+    font-size: 0.9em;
+}
+
+/* ---------------------------------------------------------------- messages */
+
+#scfWrapper .scf-message {
+    margin: 0 0 0.75em;
+    padding: 0.5em 0.75em;
+    border-radius: 0.25em;
+}
+
+#scfWrapper .scf-message-success { background: #e6f4ea; color: #14532d; }
+#scfWrapper .scf-message-warning { background: #fff4e5; color: #663c00; }
+#scfWrapper .scf-message-error { background: #fdecea; color: #7f1d1d; }
+
+/* ------------------------------------------------------- accessibility bits */
+
+/* The spam trap. It must stay out of sight -- if a visitor can see it they
+   will fill it in, and the signup is silently discarded. */
+#scfWrapper .scf-hp {
+    position: absolute !important;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+#scfWrapper .scf-visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ------------------------------------------------------------- breakpoints */
+
+/* Tablets in both orientations, and phones: the newsletter row becomes a
+   stack. This is the only rule that changes the layout. */
+@media (max-width: 991px) {
+    #scfWrapper .scf-fields {
+        display: block;
+    }
+
+    #scfWrapper .scf-field {
+        margin-bottom: var(--scf-field-gap);
+    }
+
+    #scfWrapper .scf-radios {
+        padding: 0;
+    }
+
+    /* Once the row has stacked, the button has a whole line to itself. Centre
+       it rather than leaving it hard against the left edge under a full-width
+       field. */
+    #scfWrapper .scf-field-action {
+        margin-bottom: 0;
+        text-align: center;
+    }
+
+    #scfWrapper .scf-field-action .scf-button {
+        min-width: 12em;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #scfWrapper .scf-icon { transition: none; }
+    #scfWrapper .scf-icon:hover { transform: none; }
+}

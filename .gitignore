@@ -1,0 +1,21 @@
+# OS / editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+.idea/
+.vscode/
+*.code-workspace
+
+# Build / scratch
+tmp/
+dist/
+*.log
+*.bak
+*.orig
+*.rej
+
+# Archives produced when packaging a release
+*.zip
+*.tar.gz
