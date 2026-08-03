@@ -98,6 +98,32 @@ $define = [
     'SCF_ADMIN_IMPORT_PROBLEM_KNOWN' => 'Row %1$d: %2$s is already on this list.',
     'SCF_ADMIN_IMPORT_PROBLEM_FAILED' => 'Row %1$d: %2$s could not be added.',
 
+    /* Newsletter email header image ---------------------------------------
+     * Optional. These emails carry NO image unless one is supplied here. */
+    'SCF_ADMIN_HEADER_HEADING' => 'Newsletter Email Header Image',
+    'SCF_ADMIN_HEADER_INTRO' => 'Optional. <strong>These three emails &mdash; the confirmation request, the welcome message and the registration invitation &mdash; carry no image unless you add one here.</strong> Not your store logo, nothing. Anything you add appears at the top of those three and nowhere else: your store logo file is not touched, and every other email your store sends is unchanged.',
+    'SCF_ADMIN_HEADER_SPEC' => 'Most email headers are <strong>550 &times; 110</strong> pixels, and that is the size to aim for. Accepted formats: <strong>%1$s</strong>. Nothing is resized or cropped, and the size is not enforced &mdash; but much wider than that gets scaled down or cropped by mail clients on a phone. Maximum %2$dKB.',
+    'SCF_ADMIN_HEADER_FILE_LABEL' => 'Image File',
+    'SCF_ADMIN_BUTTON_HEADER_UPLOAD' => 'Upload Header Image',
+    'SCF_ADMIN_BUTTON_HEADER_REMOVE' => 'Remove It',
+    'SCF_ADMIN_CONFIRM_HEADER_REMOVE' => 'Remove the header image? These emails go back to carrying no image at all.',
+    'SCF_ADMIN_HEADER_CURRENT' => 'In use now: <strong>%1$s</strong> (%2$d &times; %3$d pixels).',
+    'SCF_ADMIN_HEADER_NONE' => 'None set. <strong>These emails go out with no header image at all</strong> &mdash; not your store logo, nothing. Add one here if you want one.',
+    'SCF_ADMIN_HEADER_PREVIEW_ALT' => 'The header image currently used in newsletter emails',
+
+    'SCF_ADMIN_HEADER_SUCCESS' => 'Header image saved (%1$d &times; %2$d pixels). It appears in the next newsletter email this plugin sends.',
+    'SCF_ADMIN_HEADER_REMOVED' => 'Header image removed. These emails go back to carrying no image at all.',
+    'SCF_ADMIN_HEADER_ERROR_NO_FILE' => 'No image was chosen.',
+    'SCF_ADMIN_HEADER_ERROR_UPLOAD' => 'The upload did not finish. Please try again.',
+    'SCF_ADMIN_HEADER_ERROR_TOO_BIG' => 'That image is larger than %dKB. Mail clients are unforgiving about message weight, so please use a smaller one.',
+    'SCF_ADMIN_HEADER_ERROR_NOT_UPLOADED' => 'That file did not arrive as an upload and was not saved.',
+    'SCF_ADMIN_HEADER_ERROR_EXTENSION' => 'That file type cannot be used. Accepted formats: %s.',
+    'SCF_ADMIN_HEADER_ERROR_NOT_AN_IMAGE' => 'That file is not a readable image, whatever its name says.',
+    'SCF_ADMIN_HEADER_ERROR_DIR' => 'The plugin\'s email folder is missing or not writable: %s',
+    'SCF_ADMIN_HEADER_ERROR_SAVE' => 'The image could not be saved.',
+    'SCF_ADMIN_HEADER_ERROR_NONE_SET' => 'There is no header image to remove.',
+    'SCF_ADMIN_HEADER_ERROR_REMOVE' => 'The image could not be removed. Check the file permissions on the plugin\'s email folder.',
+
     /* Invite Registration -------------------------------------------------
      * Turns a confirmed subscriber into a pending customer account and emails
      * them a link plus a password. */

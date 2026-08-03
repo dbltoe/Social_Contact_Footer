@@ -123,7 +123,7 @@ If you restyle this, keep those properties. Swapping the clip for
 screen readers.
 
 `currentColor` is deliberate: the surrounding text is legible against your
-footer by definition, so a ring in the same colour is legible too — on a dark
+footer by definition, so a ring in the same color is legible too — on a dark
 footer and a light one alike, with nothing to configure.
 
 ---
@@ -210,7 +210,7 @@ Notes:
   settings and creates **no** configuration field. That is how the contact icon
   works.
 - Check `contrast` against the 3:1 non-text minimum. A white glyph needs a
-  reasonably dark brand colour.
+  reasonably dark brand color.
 - Adding an entry does not create its admin field on its own. Re-install from
   Plugin Manager to add the missing `SCF_URL_MYNETWORK` record; existing
   settings are preserved.

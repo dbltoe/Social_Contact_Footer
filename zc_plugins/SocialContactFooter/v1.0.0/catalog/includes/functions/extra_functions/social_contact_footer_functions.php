@@ -16,6 +16,10 @@ if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
 }
 
+// Where the optional newsletter header image lives, and how it reaches the
+// email. Shared with the admin side, which sends the registration invitation.
+require_once dirname(__DIR__, 4) . '/shared/email_header.php';
+
 /* --------------------------------------------------------------------------
  * Small helpers
  * ----------------------------------------------------------------------- */
@@ -535,7 +539,7 @@ function scf_render_icons()
             continue;
         }
 
-        // Only the brand colour is inline -- that is per-network data, not
+        // Only the brand color is inline -- that is per-network data, not
         // styling. Everything else, size included, comes from the stylesheet so
         // a template can override it.
         $inline = '';
@@ -592,7 +596,7 @@ function scf_icon_image($slug, $label, $size)
 }
 
 /**
- * Whitelist a colour value so it can be dropped into a style attribute.
+ * Whitelist a color value so it can be dropped into a style attribute.
  *
  * @param string $color
  * @return string
@@ -938,7 +942,7 @@ function scf_asset_href($subdir, $filename)
 }
 
 /**
- * The block's own background colour, if the store owner has set one.
+ * The block's own background color, if the store owner has set one.
  *
  * Empty means "inherit the template", which is the default and changes
  * nothing. Setting it -- #FFFFFF being the usual choice -- gives the block a
@@ -946,7 +950,7 @@ function scf_asset_href($subdir, $filename)
  * is determined by the plugin rather than by whatever the template happens to
  * put behind the footer.
  *
- * @return string  A validated CSS colour, or '' to inherit.
+ * @return string  A validated CSS color, or '' to inherit.
  */
 function scf_wrapper_background()
 {
@@ -955,12 +959,12 @@ function scf_wrapper_background()
         return '';
     }
 
-    $colour = scf_css_color($value);
+    $color = scf_css_color($value);
 
     // scf_css_color() falls back to #444444 for anything it does not
     // recognise. A grey slab across the footer would be a startling result for
     // a typo, so treat an unrecognised value as "not set" instead.
-    return ($colour === '#444444' && strcasecmp($value, '#444444') !== 0) ? '' : $colour;
+    return ($color === '#444444' && strcasecmp($value, '#444444') !== 0) ? '' : $color;
 }
 
 /**
@@ -1598,6 +1602,17 @@ function scf_send_subscriber_email($email, $name, $format, $subjectTemplate, $te
             zen_output_string_protected($unsubscribeUrl),
             zen_output_string_protected($fromAddress)
         );
+
+        // No image at the top of this message unless the store owner supplied
+        // one -- not the store logo, nothing. With none supplied this points the
+        // template's image tag at a transparent spacer, because leaving it empty
+        // is what makes Zen Cart insert the logo. See shared/email_header.php.
+        //
+        // THIS message only: the store's own image file is never touched and no
+        // other email the store sends changes.
+        //
+        // HTML only -- a TEXT-Only subscriber has no image either way.
+        $block = array_merge($block, scf_header_image_block());
     }
 
     zen_mail(

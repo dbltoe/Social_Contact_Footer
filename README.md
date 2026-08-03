@@ -54,7 +54,7 @@ The contact icon needs no entry at all: your store already knows its own Contact
 Us page and owner address, so the setting just chooses between them.
 
 Separate desktop and mobile sizes, four badge shapes, brand/monochrome/inherited
-colour, alignment and display order are all admin settings.
+color, alignment and display order are all admin settings.
 
 ### Blog
 
@@ -157,7 +157,7 @@ charge of it:
   `includes/templates/YOUR_TEMPLATE/css/` and **yours is used instead**.
 - Or just add rules to any `style*.css` in your template — those load
   afterwards and win, no `!important` needed.
-- Colours and fonts are deliberately not set, so the block inherits your footer.
+- Colors and fonts are deliberately not set, so the block inherits your footer.
   Sizes and spacing come from CSS custom properties you can retune in a line.
 
 The same override rule applies to the small script that gates the Subscribe
@@ -187,14 +187,14 @@ Checked against WCAG 2.1 AA, not just intended to be:
 - Icon links carry text naming their destination; result messages use
   `role="status"`; the honeypot is out of the tab order and hidden from
   assistive technology.
-- Contrast is computed from the declared colours, in both colour schemes for
+- Contrast is computed from the declared colors, in both color schemes for
   the HTML manual.
 - Animation respects `prefers-reduced-motion`.
 
 **One documented deviation:** four brand badges (WhatsApp, Vimeo, Telegram,
-RSS) use white glyphs on light official colours and fall below the 3:1 non-text
+RSS) use white glyphs on light official colors and fall below the 3:1 non-text
 contrast minimum. Brand fidelity was chosen over the ratio; setting **Icons
-Colour Style** to `Monochrome` or `Inherit` resolves it. It is reported as an
+Color Style** to `Monochrome` or `Inherit` resolves it. It is reported as an
 advisory rather than passed silently.
 
 ---

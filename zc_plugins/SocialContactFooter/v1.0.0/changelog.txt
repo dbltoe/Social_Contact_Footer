@@ -40,8 +40,8 @@ Storefront
 - Blog line is just a link, entirely separate from the newsletter. The wording
   writes itself from the store name, so there is nothing to type.
 - Separate desktop and mobile icon sizes, four badge shapes, brand /
-  monochrome / inherited colour, alignment, display order and link target.
-- Optional block background colour, so the contrast of everything inside the
+  monochrome / inherited color, alignment, display order and link target.
+- Optional block background color, so the contrast of everything inside the
   block becomes determinable rather than dependent on the template.
 
 Newsletter
@@ -87,6 +87,17 @@ Admin
 - Tools -> Footer Newsletter Subscribers: filter, search, change status, delete,
   export CSV including unsubscribe URLs. The footer's only signup is the
   newsletter, so this one page is the whole subscriber list.
+- Optional newsletter email header image. These three emails carry no image at
+  all unless the store owner uploads one -- not the store logo, nothing.
+  Uploaded from the subscribers page into the plugin's own email/ directory;
+  550 x 110 is the size to aim for, and the accepted formats are the five that
+  Zen Cart's zc_plugins/.htaccess will actually serve. Applies to these emails
+  only: the store's own header file is never touched and every other email it
+  sends is unchanged.
+- Install, upgrade and uninstall each write a line to the admin activity log
+  recording how many subscribers the table holds, and an uninstall says
+  explicitly whether the table was kept or dropped. "Where did my list go?" is
+  a question somebody eventually asks.
 - CSV import for addresses collected on paper, with a printable portrait
   sign-up sheet in pdf/. Everyone imported is created pending and sent the same
   confirmation request the storefront form sends -- there is no way to
@@ -135,8 +146,8 @@ Admin
 
 Accessibility
 - Checked against WCAG 2.1 AA, including contrast computed from the declared
-  colours in both colour schemes of the HTML manual.
+  colors in both color schemes of the HTML manual.
 - One documented deviation: four brand badges (WhatsApp, Vimeo, Telegram, RSS)
-  use white glyphs on light official colours and fall below the 3:1 non-text
+  use white glyphs on light official colors and fall below the 3:1 non-text
   minimum. Brand fidelity was chosen; the Monochrome and Inherit icon styles
   resolve it.

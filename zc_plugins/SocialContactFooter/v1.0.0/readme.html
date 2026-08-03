@@ -88,6 +88,7 @@ footer{margin-top:3rem;padding-top:1.25rem;border-top:1px solid var(--rule);
     <li><a href="#subscribers">Managing newsletter subscribers</a>
       <ul>
         <li><a href="#import">Importing a list from a CSV file</a></li>
+        <li><a href="#emailimage">The header image on these emails</a></li>
         <li><a href="#audiences">Sending from the Newsletter Manager</a></li>
         <li><a href="#invite">Invite Registration</a></li>
       </ul>
@@ -195,7 +196,7 @@ Footer</strong>. To get something on screen:</p>
     <td>Master switch. <code>false</code> hides the whole block without uninstalling.</td></tr>
 <tr><td>Hide On These Pages:</td><td>checkout &amp; login pages</td>
     <td>Comma-separated <code>main_page</code> values where the block is suppressed. Empty means show everywhere. The default keeps it out of checkout, where distractions cost you orders.</td></tr>
-<tr><td>Block Background Colour:</td><td><em>empty</em></td>
+<tr><td>Block Background Color:</td><td><em>empty</em></td>
     <td>Optional. Empty means the block sits on whatever your footer already uses. Setting it (<code>#FFFFFF</code> is the usual choice) gives the block a known surface, so the legibility of the text and icon badges inside becomes something you can rely on rather than hope for. An unrecognised value is ignored rather than guessed at.</td></tr>
 <tr><td>Delete Subscribers When Uninstalling?</td><td><code>false</code></td>
     <td>Read at uninstall time. <code>false</code> keeps your subscriber list safe from an accidental uninstall.</td></tr>
@@ -211,10 +212,10 @@ Footer</strong>. To get something on screen:</p>
     <td>Glyph size in pixels above 767px. Values outside 12&ndash;128 fall back to 32.</td></tr>
 <tr><td>Icons Size On Mobile:</td><td><code>24</code></td>
     <td>Glyph size at 767px and below. Smaller usually works better &mdash; footer icons compete for a short screen.</td></tr>
-<tr><td>Icons Colour Style:</td><td>Brand colors</td>
-    <td><em>Brand colors</em>, <em>Monochrome</em>, or <em>Inherit</em>. Inherit draws them in your template's own text colour &mdash; usually the right choice for a dark footer.</td></tr>
-<tr><td>Icons Monochrome Colour:</td><td><code>#444444</code></td>
-    <td>Any CSS colour. Only used in Monochrome mode.</td></tr>
+<tr><td>Icons Color Style:</td><td>Brand colors</td>
+    <td><em>Brand colors</em>, <em>Monochrome</em>, or <em>Inherit</em>. Inherit draws them in your template's own text color &mdash; usually the right choice for a dark footer.</td></tr>
+<tr><td>Icons Monochrome Color:</td><td><code>#444444</code></td>
+    <td>Any CSS color. Only used in Monochrome mode.</td></tr>
 <tr><td>Icons Badge Shape:</td><td>Rounded</td>
     <td>Circle, Rounded, Square, or Bare (glyph only, no badge).</td></tr>
 <tr><td>Icons Alignment:</td><td>Center</td><td>Left, Center or Right.</td></tr>
@@ -444,6 +445,45 @@ it is already on your list &mdash; an import can never resurrect somebody who
 unsubscribed. Up to 250 rows and 500KB per file; the rest of a larger file is
 reported rather than silently dropped, so split it and upload again.</p>
 
+<h3 id="emailimage">The header image on these emails</h3>
+
+<p><strong>The three emails this plugin sends carry no image at the top unless
+you add one</strong> &mdash; not your store logo, nothing. That is the default
+and it needs no setting.</p>
+
+<p>To add one, use <strong>Newsletter Email Header Image</strong> on the
+subscribers page. Most email headers are <strong>550 &times; 110</strong>
+pixels, which is the size to aim for; accepted formats are
+<code>jpg</code>, <code>jpeg</code>, <code>png</code>, <code>gif</code> and
+<code>webp</code>, because Zen Cart&rsquo;s own <code>zc_plugins/.htaccess</code>
+will not serve anything else. Nothing is resized or cropped. Whatever you upload
+appears at the top of the confirmation request, the welcome message and the
+registration invitation, and nowhere else.</p>
+
+<div class="warn">
+<p><strong>About that generic header on your other emails.</strong> Every release
+of Zen Cart from v1.5.8 to v3.0 ships the same placeholder image at
+<code>email/header.jpg</code> in your store root &mdash; the identical file, byte
+for byte &mdash; and <em>every other email your store sends</em> uses it: order
+confirmations, account notices, contact-us replies. So unless you have already
+replaced it, your customers are receiving Zen Cart&rsquo;s stock artwork.</p>
+<p>Most store owners never notice, because it is not a Configuration setting.
+The filename is a language define &mdash; <code>EMAIL_LOGO_FILENAME</code>, set
+to <code>header.jpg</code> in
+<code>includes/languages/english/lang.email_extras.php</code> &mdash; so there is
+no admin screen pointing at it and nothing ever prompts you to change it.</p>
+<p>Nothing here changes that file, and this plugin&rsquo;s own emails do not show
+it. But it is worth replacing with something of your own, and the easy way is to
+put your own image at <code>email/header.jpg</code> in your store root, keeping
+the filename. A customer who signed up in your footer and later places an order
+will see it on the order confirmation, whatever these three emails look like.</p>
+<p>There is also one uncommon case where a subscriber could see it on one of
+<em>these</em> emails: if the store is configured such that the plugin cannot
+work out its own public address, it steps back and lets Zen Cart insert the
+store logo rather than send a broken image. Replacing that placeholder means
+even that case looks deliberate.</p>
+</div>
+
 <h3 id="audiences">Sending to them from the Newsletter Manager</h3>
 
 <p>Zen Cart&rsquo;s <strong>Tools &rarr; Newsletter and Product Notifications
@@ -623,7 +663,7 @@ Subscribe button, in your template&rsquo;s <code>jscript/</code> folder.</p>
 
 <p>There is no setting to switch the stylesheet off: it carries the block&rsquo;s
 layout, so without it the markup collapses. Overriding replaces those rules
-rather than removing them. Colours and fonts are deliberately not set, so the
+rather than removing them. Colors and fonts are deliberately not set, so the
 block inherits your footer.</p>
 
 <p>The stacking breakpoint for the newsletter row is

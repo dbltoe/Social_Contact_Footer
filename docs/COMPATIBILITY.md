@@ -15,7 +15,7 @@ Not by assertion. Three checks run against the real thing:
 |---|---|
 | **Zen Cart API** | Every core symbol the plugin uses — functions, constants, notifiers, classes, installer methods — is extracted from the source and looked up in all six release branches (`v158`, `2.0`, `2.1`, `2.2`, `2.3`, `master`) with `git grep`. 58 symbols, all present. |
 | **PHP** | Lint plus the full harness suite on 7.4, 8.0, 8.1, 8.2, 8.3, 8.4 and 8.5. Clean, with zero diagnostics at `E_ALL`. |
-| **Accessibility** | WCAG 2.1 AA checks over the rendered storefront block and the HTML readme, including contrast computed from the declared colours. |
+| **Accessibility** | WCAG 2.1 AA checks over the rendered storefront block and the HTML readme, including contrast computed from the declared colors. |
 
 A symbol that exists in `master` but not `v158` is exactly the failure mode
 that produces a plugin which works for the developer and fatals for half the
@@ -219,7 +219,7 @@ Guard with `defined()`. The constant does not exist when the plugin is not
 installed, and the manifest is read for *every* plugin on the filesystem,
 installed or not.
 
-**The banner's colours are constrained, not chosen.** `#D9534F` reaches only
+**The banner's colors are constrained, not chosen.** `#D9534F` reaches only
 3.96:1 against pure white — the lightest background there is — so it can never
 meet WCAG's 4.5:1 for ordinary body text. It clears 3:1 easily, which is the
 threshold for large text and for non-text elements, so it is used for the

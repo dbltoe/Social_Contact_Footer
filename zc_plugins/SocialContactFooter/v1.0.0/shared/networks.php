@@ -17,7 +17,7 @@
  *   example       Example fragment shown in the admin description.
  *   derived       Present and true when the plugin works the link out from the
  *                 store's own settings, so no configuration field is created.
- *   color         Brand colour used when the icon style is "Brand colors".
+ *   color         Brand color used when the icon style is "Brand colors".
  *   contrast      'light' = glyph drawn light on `color`; 'dark' = drawn dark.
  *   sort          Default display order (also the admin sort_order offset).
  *   svg           Inline 24x24 SVG glyph. See docs/CUSTOMIZING.md -- these are

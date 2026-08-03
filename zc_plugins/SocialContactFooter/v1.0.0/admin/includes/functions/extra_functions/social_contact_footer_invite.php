@@ -540,6 +540,9 @@ function scf_admin_send_invite_email($email, $name, $format, $password, $token, 
 
     $block = [];
     if ($format === 'HTML') {
+        // The owner's own header image replaces the store logo in this message
+        // only; [] when none is set. See shared/email_header.php.
+        $block = scf_header_image_block();
         $block['EMAIL_MESSAGE_HTML'] = sprintf(
             $htmlBody,
             zen_output_string_protected($storeName),

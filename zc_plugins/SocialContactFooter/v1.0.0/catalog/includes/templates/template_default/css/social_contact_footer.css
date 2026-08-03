@@ -20,7 +20,7 @@
  *
  *     #scfWrapper { --scf-gap: 1.2em; --scf-radius: 50%; }
  *
- * Colours and fonts are deliberately NOT set: the block inherits from your
+ * Colors and fonts are deliberately NOT set: the block inherits from your
  * template so it matches the rest of your footer.
  *
  * @package  SocialContactFooter
@@ -53,7 +53,7 @@
     background-color: var(--scf-bg);
 }
 
-/* When a background has been chosen, pad the sides too so the colour reads as
+/* When a background has been chosen, pad the sides too so the color reads as
    a deliberate band rather than a stripe clipped to the text. */
 #scfWrapper.scf-has-bg {
     padding-left: var(--scf-bg-pad);
@@ -256,7 +256,7 @@
 }
 
 /* The visible control. currentColor is used deliberately: the surrounding text
-   is legible against the footer by definition, so a ring in the same colour is
+   is legible against the footer by definition, so a ring in the same color is
    legible too -- on a dark footer and a light one alike, with no setting. */
 #scfWrapper .scf-radio .scf-mark {
     display: inline-flex;

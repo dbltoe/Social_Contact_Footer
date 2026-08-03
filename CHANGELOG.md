@@ -31,11 +31,11 @@ its customers. The newsletter signup is an addition rather than the point.
   relative path is preferred over a full address.
 - Blog line, separate from the newsletter, with wording built from the store
   name.
-- Separate desktop and mobile icon sizes, four badge shapes, three colour
+- Separate desktop and mobile icon sizes, four badge shapes, three color
   treatments, alignment, display order, link target, and an optional block
-  background colour.
+  background color.
 - Appearance lives in a real stylesheet that a template can override by
-  supplying its own copy; colours and fonts are inherited by design.
+  supplying its own copy; colors and fonts are inherited by design.
 
 ### Newsletter
 
@@ -74,6 +74,13 @@ its customers. The newsletter signup is an addition rather than the point.
 
 - **Tools → Footer Newsletter Subscribers**: filtering, search, status changes,
   deletion, CSV export including unsubscribe URLs.
+- **Optional newsletter email header image.** These three emails carry no image
+  at all unless the owner uploads one — not the store logo, nothing. Uploaded
+  from the subscribers page into the plugin's own `email/` directory; 550 × 110
+  is the size to aim for, and the accepted formats are the five Zen Cart's
+  `zc_plugins/.htaccess` will actually serve. Applies to these emails only: the
+  store's own header file is never touched and every other email it sends is
+  unchanged.
 - **CSV import**, with a printable sign-up sheet (portrait, `pdf/`) for
   collecting addresses on paper. Imported people are created *pending* and sent
   the same confirmation request the footer form sends; there is no way to
@@ -114,6 +121,6 @@ its customers. The newsletter signup is an addition rather than the point.
 
 - Zen Cart API: 58 core symbols checked against all six release branches.
 - PHP: lint and the full harness suite on 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5.
-- Accessibility: WCAG 2.1 AA, with one documented brand-colour deviation.
+- Accessibility: WCAG 2.1 AA, with one documented brand-color deviation.
 
 [1.0.0]: https://github.com/dbltoe/Social_Contact_Footer/releases/tag/v1.0.0

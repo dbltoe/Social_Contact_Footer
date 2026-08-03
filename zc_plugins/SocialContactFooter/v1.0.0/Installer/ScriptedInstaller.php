@@ -49,6 +49,14 @@ class ScriptedInstaller extends ScriptedInstallBase
         // so straight away rather than on the next visit.
         $this->scfSyncPluginControlName(false);
 
+        // Says how many subscribers survived, so an install that ran over an
+        // existing table can be told apart from one that started empty.
+        $this->scfLog(
+            'Social Contact Footer: installed/upgraded. Subscriber table holds '
+            . $this->scfCountSubscribers() . ' subscriber(s).',
+            'warning'
+        );
+
         return true;
     }
 
@@ -85,8 +93,26 @@ class ScriptedInstaller extends ScriptedInstallBase
             );
         }
 
+        // Count before deciding, so the log can say what was actually lost
+        // rather than that something was.
+        $subscriberCount = $this->scfCountSubscribers();
+
         if ($dropTable === 'true') {
             $this->executeInstallerSql("DROP TABLE IF EXISTS " . $this->scfSubscribersTable());
+            $this->scfLog(
+                'Social Contact Footer: UNINSTALLED and the subscriber table was DROPPED, '
+                . 'discarding ' . $subscriberCount . ' subscriber(s). '
+                . 'Delete Subscribers When Uninstalling? was set to true.',
+                'warning'
+            );
+        } else {
+            // Said explicitly. "Where did my list go?" is a question somebody
+            // will eventually ask, and this is the line that answers it.
+            $this->scfLog(
+                'Social Contact Footer: uninstalled. The subscriber table was KEPT, '
+                . 'with ' . $subscriberCount . ' subscriber(s) still in it.',
+                'warning'
+            );
         }
 
         // Put the plugin's name back before the row stops being ours to fix.
@@ -99,6 +125,48 @@ class ScriptedInstaller extends ScriptedInstallBase
         $this->scfSyncPluginControlName(true);
 
         return true;
+    }
+
+    /**
+     * Write a line to the admin activity log, if we can.
+     *
+     * Guarded because the installer runs in an unusual context -- Plugin
+     * Manager, mid-transaction, sometimes before this plugin's own files are
+     * loaded -- and a missing logger must never be the thing that fails an
+     * install or, worse, an uninstall.
+     *
+     * @param string $message
+     * @param string $severity
+     * @return void
+     */
+    protected function scfLog($message, $severity = 'info')
+    {
+        if (function_exists('zen_record_admin_activity')) {
+            zen_record_admin_activity($message, $severity);
+        }
+    }
+
+    /**
+     * How many subscribers are in the table right now.
+     *
+     * Returns 0 when the table is not there, which is also the honest answer.
+     *
+     * @return int
+     */
+    protected function scfCountSubscribers()
+    {
+        $table = $this->scfSubscribersTable();
+
+        $exists = $this->dbConn->Execute(
+            "SHOW TABLES LIKE '" . $this->dbConn->prepare_input($table) . "'"
+        );
+        if ($exists->EOF) {
+            return 0;
+        }
+
+        $count = $this->dbConn->Execute("SELECT COUNT(*) AS total FROM " . $table);
+
+        return $count->EOF ? 0 : (int)$count->fields['total'];
     }
 
     /**
@@ -291,11 +359,22 @@ class ScriptedInstaller extends ScriptedInstallBase
         $customers = 'TABLE_CUSTOMERS';
         $subscribers = 'TABLE_SOCIAL_CONTACT_FOOTER_SUBSCRIBERS';
 
-        // Confirmed footer subscribers only (status 1 = confirmed).
+        // Confirmed subscribers (status 1) who have NO customer account.
+        //
+        // The exclusion is by address against the customers table, not against
+        // this plugin's own customers_id column. That column records what was
+        // true when they subscribed or were invited; somebody who registered
+        // separately afterwards would still show 0 there, and this audience
+        // would then mail an account holder while calling them account-less.
+        // Checking the address matches what the Subscribers page shows in its
+        // Account column, which is also a live lookup.
         $footerOnly =
             'select subscriber_name as customers_firstname , \'\' as customers_lastname ,'
             . ' subscriber_email as customers_email_address'
-            . ' from ' . $subscribers . ' where status = 1 order by subscriber_email';
+            . ' from ' . $subscribers . ' where status = 1'
+            . ' and subscriber_email not in ( select customers_email_address'
+            . ' from ' . $customers . ' )'
+            . ' order by subscriber_email';
 
         // Both lists in one audience. The second half excludes anyone already
         // returned by the first, so nobody who is both a customer subscriber
@@ -630,9 +709,9 @@ class ScriptedInstaller extends ScriptedInstallBase
             /* ---- icon appearance ---- */
             [
                 'key' => 'SCF_WRAPPER_BACKGROUND',
-                'title' => 'Block Background Colour:',
+                'title' => 'Block Background Color:',
                 'value' => '',
-                'description' => 'Optional, and off by default: the block simply sits on whatever your footer already uses. <strong>Set it to <code>#FFFFFF</code></strong> (or any CSS colour) if you want the block to carry its own background. That is worth doing for accessibility -- the icon badges use fixed brand colours, and the text takes its colour from your template, so on an unusual footer background the contrast of what sits inside this block cannot be predicted. Giving it a known surface makes it predictable. An unrecognised value is ignored rather than guessed at.',
+                'description' => 'Optional, and off by default: the block simply sits on whatever your footer already uses. <strong>Set it to <code>#FFFFFF</code></strong> (or any CSS color) if you want the block to carry its own background. That is worth doing for accessibility -- the icon badges use fixed brand colors, and the text takes its color from your template, so on an unusual footer background the contrast of what sits inside this block cannot be predicted. Giving it a known surface makes it predictable. An unrecognised value is ignored rather than guessed at.',
                 'sort_order' => 95,
                 'set_function' => '',
             ],
@@ -662,17 +741,17 @@ class ScriptedInstaller extends ScriptedInstallBase
             ],
             [
                 'key' => 'SCF_ICON_STYLE',
-                'title' => 'Icons Colour Style:',
+                'title' => 'Icons Color Style:',
                 'value' => 'Brand colors',
-                'description' => '<strong>Brand colors</strong> fills each badge with that network\'s colour. <strong>Monochrome</strong> uses a single colour for all of them (see the next setting). <strong>Inherit</strong> draws them in your template\'s own text colour, which is usually right for a dark footer.',
+                'description' => '<strong>Brand colors</strong> fills each badge with that network\'s color. <strong>Monochrome</strong> uses a single color for all of them (see the next setting). <strong>Inherit</strong> draws them in your template\'s own text color, which is usually right for a dark footer.',
                 'sort_order' => 120,
                 'set_function' => "zen_cfg_select_option(array('Brand colors', 'Monochrome', 'Inherit'), ",
             ],
             [
                 'key' => 'SCF_ICON_MONO_COLOR',
-                'title' => 'Icons Monochrome Colour:',
+                'title' => 'Icons Monochrome Color:',
                 'value' => '#444444',
-                'description' => 'Any CSS colour value. Only used when <em>Icons Colour Style</em> is set to <strong>Monochrome</strong>.',
+                'description' => 'Any CSS color value. Only used when <em>Icons Color Style</em> is set to <strong>Monochrome</strong>.',
                 'sort_order' => 130,
                 'set_function' => '',
             ],
@@ -680,7 +759,7 @@ class ScriptedInstaller extends ScriptedInstallBase
                 'key' => 'SCF_ICON_SHAPE',
                 'title' => 'Icons Badge Shape:',
                 'value' => 'Rounded',
-                'description' => 'Shape of the coloured badge behind each glyph. <strong>Bare</strong> draws the glyph on its own with no badge.',
+                'description' => 'Shape of the colored badge behind each glyph. <strong>Bare</strong> draws the glyph on its own with no badge.',
                 'sort_order' => 140,
                 'set_function' => "zen_cfg_select_option(array('Circle', 'Rounded', 'Square', 'Bare'), ",
             ],

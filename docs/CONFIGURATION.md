@@ -16,12 +16,12 @@ setting is a yes/no question.
 | **Enable Social Contact Footer?** | `false` | Master switch, **off on a fresh install** so a half-configured block never goes live while you are still setting it up. Until it is `true`, Plugin Manager shows *Mod Not Turned On* beside the plugin name, so an unfinished setup cannot be forgotten. |
 | **Hide On These Pages:** | checkout &amp; login pages | Comma-separated `main_page` values where the block is suppressed. Empty means show everywhere. The default keeps it out of checkout, where distractions cost you orders. |
 | **Delete Subscribers When Uninstalling?** | `false` | Read at uninstall time. `false` keeps the subscriber table so an accidental uninstall cannot destroy addresses. |
-| **Block Background Colour:** | *(empty)* | Optional. Empty means the block sits on whatever your footer already uses. See [Why you might set a background](#why-you-might-set-a-background). |
+| **Block Background Color:** | *(empty)* | Optional. Empty means the block sits on whatever your footer already uses. See [Why you might set a background](#why-you-might-set-a-background). |
 
 ### Why you might set a background
 
 Left empty, the block inherits your footer — which looks right, but means the
-contrast of what sits inside it depends on a colour the plugin cannot know.
+contrast of what sits inside it depends on a color the plugin cannot know.
 Setting this (**`#FFFFFF`** is the usual choice) gives the block a known
 surface, so the legibility of the text and the icon badges becomes something
 you can state rather than hope for.
@@ -38,8 +38,8 @@ block as it was instead of painting a grey slab across your footer.
 | **Icons Heading:** | *(empty)* | Empty uses the translatable default, *Follow us*. A single space shows no heading. |
 | **Icons Size On Desktop:** | `32` | Pixels, on screens wider than 767px. Anything outside 12–128 falls back to 32. |
 | **Icons Size On Mobile:** | `24` | Pixels, on screens 767px and narrower. Smaller usually works better — footer icons compete for a short screen. |
-| **Icons Colour Style:** | `Brand colors` | `Brand colors`, `Monochrome`, or `Inherit`. Inherit draws them in your template's own text colour, which is usually right for a dark footer. |
-| **Icons Monochrome Colour:** | `#444444` | Any CSS colour. Only used in `Monochrome` mode. |
+| **Icons Color Style:** | `Brand colors` | `Brand colors`, `Monochrome`, or `Inherit`. Inherit draws them in your template's own text color, which is usually right for a dark footer. |
+| **Icons Monochrome Color:** | `#444444` | Any CSS color. Only used in `Monochrome` mode. |
 | **Icons Badge Shape:** | `Rounded` | `Circle`, `Rounded`, `Square`, or `Bare` (glyph only, no badge). |
 | **Icons Alignment:** | `Center` | `Left`, `Center` or `Right`. Applies to the whole block. |
 | **Icons Artwork Source:** | `Built-in SVG` | Built-in glyphs, or your own image files. See [CUSTOMIZING.md](CUSTOMIZING.md). |

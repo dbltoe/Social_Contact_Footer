@@ -220,6 +220,20 @@ if ($action !== '' && $scfTableExists) {
             zen_redirect(zen_href_link(FILENAME_SOCIAL_CONTACT_FOOTER_SUBSCRIBERS, scfAdminQueryString(), 'SSL'));
             break;
 
+        case 'header_upload':
+            $outcome = scf_admin_store_header_image(
+                isset($_FILES['scf_header_image']) ? $_FILES['scf_header_image'] : []
+            );
+            $messageStack->add_session($outcome['message'], $outcome['ok'] ? 'success' : 'error');
+            zen_redirect(zen_href_link(FILENAME_SOCIAL_CONTACT_FOOTER_SUBSCRIBERS, scfAdminQueryString(), 'SSL'));
+            break;
+
+        case 'header_remove':
+            $outcome = scf_admin_remove_header_image();
+            $messageStack->add_session($outcome['message'], $outcome['ok'] ? 'success' : 'warning');
+            zen_redirect(zen_href_link(FILENAME_SOCIAL_CONTACT_FOOTER_SUBSCRIBERS, scfAdminQueryString(), 'SSL'));
+            break;
+
         case 'reinvite':
             if ($subscriberId > 0) {
                 $outcome = scf_admin_resend_invite($subscriberId);
@@ -366,7 +380,7 @@ $lastShown = ($totalRows === 0) ? 0 : $firstShown + count($rows) - 1;
 .scf-admin-filters form{display:flex;flex-wrap:wrap;gap:.6em;align-items:flex-end;margin:0}
 .scf-admin-rowform{display:inline;margin:0}
 .scf-admin-pager{margin:1em 0;display:flex;gap:1em;align-items:center}
-/* Status colours, all measured rather than eyeballed -- against white, and
+/* Status colors, all measured rather than eyeballed -- against white, and
  * against the light zebra stripe some admin themes paint behind table rows,
  * because the theme decides which one is actually behind the text:
  *
@@ -378,7 +392,7 @@ $lastShown = ($totalRows === 0) ? 0 : $firstShown + count($rows) - 1;
  * Unsubscribed is red, matching the Delete button, because it is the status
  * that must not be misread: it means do not mail this person.
  *
- * It is the button's border-and-hover shade rather than its face colour, and
+ * It is the button's border-and-hover shade rather than its face color, and
  * that is not a compromise -- it is the only way to actually match. #CE4844
  * works on the button because the WHITE text does the contrasting, at 4.53:1.
  * Turned around as text on a near-white row it has almost nothing to contrast
@@ -550,6 +564,58 @@ $statusOptions = [
             unset($_SESSION['scf_import_problems']);
         }
 ?>
+    </section>
+
+    <section class="scf-admin-import" aria-labelledby="scfHeaderHeading">
+        <h2 id="scfHeaderHeading"><?php echo SCF_ADMIN_HEADER_HEADING; ?></h2>
+        <p><?php echo SCF_ADMIN_HEADER_INTRO; ?></p>
+        <p><?php
+            echo sprintf(
+                SCF_ADMIN_HEADER_SPEC,
+                implode(', ', scf_header_image_extensions()),
+                (int)(SCF_HEADER_IMAGE_MAX_BYTES / 1024)
+            );
+        ?></p>
+<?php
+        $scfHeaderPath = scf_header_image_path();
+        if ($scfHeaderPath !== '') {
+            $scfHeaderSize = @getimagesize($scfHeaderPath);
+            $scfHeaderW = is_array($scfHeaderSize) ? (int)$scfHeaderSize[0] : 0;
+            $scfHeaderH = is_array($scfHeaderSize) ? (int)$scfHeaderSize[1] : 0;
+?>
+        <p><?php echo sprintf(SCF_ADMIN_HEADER_CURRENT, zen_output_string_protected(basename($scfHeaderPath)), $scfHeaderW, $scfHeaderH); ?></p>
+        <p><img src="<?php echo zen_output_string_protected(scf_header_image_url()); ?>"
+                alt="<?php echo zen_output_string_protected(SCF_ADMIN_HEADER_PREVIEW_ALT); ?>"
+                style="max-width:100%;height:auto;border:1px solid #ddd"></p>
+        <?php echo zen_draw_form('scfHeaderRemove', FILENAME_SOCIAL_CONTACT_FOOTER_SUBSCRIBERS, scfAdminQueryString(), 'post', 'class="scf-admin-rowform" onsubmit="return confirm(\'' . zen_output_string_protected(SCF_ADMIN_CONFIRM_HEADER_REMOVE) . '\');"'); ?>
+        <?php echo zen_draw_hidden_field('action', 'header_remove'); ?>
+        <button type="submit" class="btn btn-danger"><?php echo SCF_ADMIN_BUTTON_HEADER_REMOVE; ?></button>
+        <?php echo '</form>'; ?>
+<?php
+        } else {
+?>
+        <p><?php echo SCF_ADMIN_HEADER_NONE; ?></p>
+<?php
+        }
+
+        // Same enctype note as the CSV form: zen_draw_form() defaults to
+        // urlencoded, which discards the file and leaves $_FILES empty.
+        echo zen_draw_form(
+            'scfHeaderUpload',
+            FILENAME_SOCIAL_CONTACT_FOOTER_SUBSCRIBERS,
+            scfAdminQueryString(),
+            'post',
+            'enctype="multipart/form-data"'
+        );
+        echo zen_draw_hidden_field('action', 'header_upload');
+?>
+        <label>
+            <?php echo SCF_ADMIN_HEADER_FILE_LABEL; ?><br>
+            <input type="file" name="scf_header_image"
+                   accept="<?php echo zen_output_string_protected('.' . implode(',.', scf_header_image_extensions())); ?>" required>
+        </label>
+        <button type="submit" class="btn btn-primary"><?php echo SCF_ADMIN_BUTTON_HEADER_UPLOAD; ?></button>
+        <?php echo '</form>'; ?>
     </section>
 <?php } ?>
 
