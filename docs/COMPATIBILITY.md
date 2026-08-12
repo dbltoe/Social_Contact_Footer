@@ -250,6 +250,41 @@ therefore uses plain functions in `extra_functions`, plus one non-namespaced
 observer class, and resolves its own shared file with `__DIR__` arithmetic
 rather than an autoloader.
 
+That decision turned out to insulate the plugin from a core change as well —
+see below.
+
+### Upstream: `FileSystem` directory detection (zencart/zencart #7953)
+
+Checked 2026-08-13 against DrByte's open PR, which corrects
+`FileSystem::isAdminDir()` and `isCatalogDir()`. Those two have returned the
+**opposite** of what their names say since v1.5.7, `getRelativeDir()` is built
+on them and so is a no-op for absolute paths, and the comparison never worked on
+Windows at all — `DIR_FS_CATALOG` is written with forward slashes while
+`DIR_FS_ADMIN` comes from `realpath()` with backslashes.
+
+**No effect on this plugin.** Three ways it could have hit us, and why none do:
+
+| Risk | Why we are clear |
+|---|---|
+| `isAdminDir()` / `isCatalogDir()` answers flip, and they are public | We never call them, nor `getRelativeDir()` or `isWithin()`. The only mention of `FileSystem` in this tree is a comment. |
+| An auto_loader with an absolute `classPath` resolves to a path containing the store root twice | Our auto_loader declares no `classPath`. It is one `init_script` entry at breakpoint 178 with `loadFile` only, so `processAutoTypeClass()` — the sole consumer of `findPluginDirectory()` — is never reached. |
+| PSR-4 plugin class loading | Not used, for the reason above. |
+
+The APIs this plugin does depend on are untouched by that PR:
+`loadFilesFromPluginsDirectory()` (which loads our `extra_functions` on every
+admin page), `findPluginAdminPage()` (which routes
+`cmd=social_contact_footer_subscribers`), and the template-part listing behind
+the admin CSS hook.
+
+Two things to keep in mind if this is revisited:
+
+- **It is master-only.** Even merged, it lands in v3.0. The plugin still has to
+  run unchanged on v1.5.8 through v2.3, where the old behaviour stays — so the
+  corrected methods never become something to rely on.
+- **The Windows fix is not a licence to start using them.** Path comparison
+  becoming trustworthy on a Windows dev box is welcome, but it is trustworthy
+  only on the newest release.
+
 ### The `ScriptedInstaller` convenience helpers
 
 `addConfigurationKey()`, `deleteConfigurationKeys()`,
