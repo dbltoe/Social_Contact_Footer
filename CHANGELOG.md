@@ -5,17 +5,30 @@ All notable changes to this project are recorded here. This project follows
 
 ## [1.0.1] — 2026-08-26
 
-A patch release. Everything below was found and fixed before the plugin was
-submitted anywhere, so no store is running the versions these affected.
+A patch release, and **anyone running 1.0.0 should take it**. The first of the
+fixes below is a security fix.
+
+### Added
+
+- **`pluginId` is set.** It was `0` in 1.0.0, which is why Plugin Manager never
+  offered an update. If you installed 1.0.0 on Zen Cart **v1.5.8, v2.0 or
+  v2.1**, upgrading in place will not repair that by itself: those releases
+  write `plugin_control.zc_contrib_id` only when the row is first created, and
+  refresh nothing but `infs` afterwards. To clear it, remove the
+  `zc_plugins/SocialContactFooter/` directory, open Plugin Manager once so the
+  stale row is swept, then upload 1.0.1. Zen Cart v2.2 and later rewrite the
+  value on every scan and need nothing done. This affects only the update
+  notice — the plugin itself works either way.
 
 ### Fixed
 
-- **A subscriber's address reached the admin message stack unescaped.** The
-  invitation and re-invitation confirmations put the address straight into the
-  message shown on **Tools → Footer Newsletter Subscribers**. An address is
-  attacker-supplied — anyone can type one into the storefront form — so this was
-  a stored cross-site-scripting hole in the admin. All three call sites now pass
-  it through `zen_output_string_protected()`.
+- **A subscriber's address reached the admin message stack unescaped.**
+  *(Security.)* The invitation and re-invitation confirmations put the address
+  straight into the message shown on **Tools → Footer Newsletter Subscribers**.
+  An address is attacker-supplied — anyone can type one into the storefront
+  form — so a visitor could store markup that ran in the admin's browser the
+  next time a store owner invited or re-invited them. All three call sites now
+  pass it through `zen_output_string_protected()`. Present in 1.0.0.
 - **The *Newsletter Subscribers: No Account Yet* audience listed everyone.** The
   query had no exclusion clause, so it returned the same rows as
   *Everyone* — a store owner picking it would have mailed people who already had

@@ -47,6 +47,23 @@ check('readme link honours DIR_WS_CATALOG',
  * decide an install is an upgrade; a mismatch makes the new version invisible. */
 check('pluginVersion matches the directory: ' . $manifest['pluginVersion'],
     ltrim($manifest['pluginVersion'], 'v') === ltrim($version, 'v'));
+
+section('the Plugins Library id');
+/* Written to plugin_control.zc_contrib_id and passed to
+ * isNewDownloadAvailable(). Zero means Plugin Manager never offers an update,
+ * and on v1.5.8/v2.0/v2.1 the column is written only by the INSERT that
+ * created the row -- so a zero that ships is frozen on every store that
+ * installs it, and upgrading in place does not clear it. It shipped as 0 in
+ * v1.0.0, which is exactly why this check exists. */
+check('pluginId is set: ' . var_export($manifest['pluginId'], true),
+    !empty($manifest['pluginId']));
+check('pluginId is an integer, not a numeric string',
+    is_int($manifest['pluginId']));
+check('pluginId matches the plugin page: ' . $manifest['pluginId'],
+    $manifest['pluginId'] === 2447);
+/* 860 is Scheduled Events. Pointing Plugin Manager at another plugin's id
+ * would offer store owners the wrong download. */
+check('pluginId is not another plugin of ours', $manifest['pluginId'] !== 860);
 check('GitHub link present',
     strpos($desc, 'href="https://github.com/dbltoe/Social_Contact_Footer"') !== false);
 /* They must look like Plugin Manager's own Install / Uninstall / Disable. */

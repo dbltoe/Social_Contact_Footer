@@ -182,7 +182,17 @@ return [
     // Shown as the Author in Plugin Manager, and stored in
     // plugin_control.author / plugin_control_versions.author (varchar(64)).
     'pluginAuthor' => 'My Zen Cart Host (dbltoe)',
-    'pluginId' => 0, // ID from the Zen Cart Plugins Library; 0 until published.
+    // ID from the Zen Cart Plugins Library -- the number after "vb" in
+    // https://www.zen-cart.com/plugins/social-contact-footer-vb2447
+    //
+    // Written to plugin_control.zc_contrib_id, and the only thing that makes
+    // "a new version is available" work in Plugin Manager. It has to be right
+    // the FIRST time a store installs the plugin: on v1.5.8/v2.0/v2.1,
+    // updatePluginControl() calls upsert($values, ['id'], ['infs']), so on an
+    // existing row only `infs` is rewritten and zc_contrib_id keeps whatever
+    // the original INSERT put there. v2.2 and later use upsertMany(), which
+    // refreshes it on every scan.
+    'pluginId' => 2447,
     'zcVersions' => ['v158', 'v200', 'v210', 'v220', 'v230', 'v300'],
     'changelog' => 'changelog.txt',
     'github_repo' => $scfGithubUrl,
