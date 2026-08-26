@@ -386,7 +386,11 @@ function scf_admin_send_invite($subscriberId)
         'warning'
     );
 
-    return ['ok' => true, 'message' => sprintf(SCF_ADMIN_INVITE_SUCCESS, $email)];
+    // Escaped because this message is handed to $messageStack, and every Zen
+    // Cart admin page renders that with `echo $messageStack->output()` -- as
+    // raw HTML. The address came from a subscriber, so it is not ours to trust
+    // at the point it becomes markup.
+    return ['ok' => true, 'message' => sprintf(SCF_ADMIN_INVITE_SUCCESS, zen_output_string_protected($email))];
 }
 
 /**
@@ -461,7 +465,8 @@ function scf_admin_resend_invite($subscriberId)
         'warning'
     );
 
-    return ['ok' => true, 'message' => sprintf(SCF_ADMIN_REINVITE_SUCCESS, $email)];
+    // Escaped for the same reason as the first invitation above.
+    return ['ok' => true, 'message' => sprintf(SCF_ADMIN_REINVITE_SUCCESS, zen_output_string_protected($email))];
 }
 
 /**

@@ -13,6 +13,13 @@
  * @package  SocialContactFooter
  * @license  http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  */
+// Not reachable directly. Zen Cart's shipped zc_plugins/.htaccess denies .php
+// here, but that is Apache-only -- on nginx, or Apache with AllowOverride None,
+// it would not apply. This file is only ever require'd, from the admin and the
+// storefront alike, so IS_ADMIN_FLAG is always defined by the time it loads.
+if (!defined('IS_ADMIN_FLAG')) {
+    die('Illegal Access');
+}
 
 if (!defined('SCF_HEADER_IMAGE_DIR')) {
     /**

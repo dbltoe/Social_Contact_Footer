@@ -87,7 +87,9 @@ function scf_admin_store_header_image(array $file)
 
     $dir = SCF_HEADER_IMAGE_DIR;
     if (!is_dir($dir) || !is_writable($dir)) {
-        return ['ok' => false, 'message' => sprintf(SCF_ADMIN_HEADER_ERROR_DIR, $dir)];
+        // A server path rather than user input, but it still ends up inside
+        // $messageStack->output(), which is echoed as raw HTML.
+        return ['ok' => false, 'message' => sprintf(SCF_ADMIN_HEADER_ERROR_DIR, zen_output_string_protected($dir))];
     }
 
     foreach ($allowed as $existing) {
