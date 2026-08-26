@@ -3,6 +3,48 @@
 All notable changes to this project are recorded here. This project follows
 [Semantic Versioning](https://semver.org/).
 
+## [1.0.1] — 2026-08-26
+
+A patch release. Everything below was found and fixed before the plugin was
+submitted anywhere, so no store is running the versions these affected.
+
+### Fixed
+
+- **A subscriber's address reached the admin message stack unescaped.** The
+  invitation and re-invitation confirmations put the address straight into the
+  message shown on **Tools → Footer Newsletter Subscribers**. An address is
+  attacker-supplied — anyone can type one into the storefront form — so this was
+  a stored cross-site-scripting hole in the admin. All three call sites now pass
+  it through `zen_output_string_protected()`.
+- **The *Newsletter Subscribers: No Account Yet* audience listed everyone.** The
+  query had no exclusion clause, so it returned the same rows as
+  *Everyone* — a store owner picking it would have mailed people who already had
+  an account. It now excludes any address present in `customers`.
+- **A storefront subscribe could fatal on PHP 8.** `shared/email_header.php`
+  read `HTTP_SERVER` and `DIR_WS_CATALOG` without checking they were defined.
+  An undefined constant is a fatal error on PHP 8, not a notice.
+
+### Changed
+
+- **Optional header image on this plugin's three emails.** The confirmation
+  request, the welcome message and the registration invitation carry no image at
+  all unless the store owner adds one under **Newsletter E-Mail Header Image**.
+  The store's own `email/header.jpg` is never read and never written — other
+  mail the store sends is unaffected.
+- **American spelling, and Zen Cart's "E-Mail".** Eleven British spellings and
+  two capitalized `Email` labels were corrected across the plugin and the docs.
+  The contact icon's label and the admin heading changed with them.
+
+### Documentation
+
+- `docs/COMPATIBILITY.md` records why upstream Zen Cart PR #7953 does not affect
+  this plugin, and how `plugin_control.name` is refreshed differently on
+  v1.5.8/v2.0/v2.1 than on v2.2 and later.
+- `readme.html` no longer refers to an "Email field" that does not exist — that
+  network is derived from the store's own owner address and has no setting.
+- `docs/CONFIGURATION.md` no longer describes a name field on the storefront
+  form. There has not been one since before 1.0.0 was released.
+
 ## [1.0.0] — 2026-08-02
 
 Initial release. Runs on Zen Cart v1.5.8 through v3.0.0 and PHP 7.4 through
@@ -123,4 +165,5 @@ its customers. The newsletter signup is an addition rather than the point.
 - PHP: lint and the full harness suite on 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5.
 - Accessibility: WCAG 2.1 AA, with one documented brand-color deviation.
 
+[1.0.1]: https://github.com/dbltoe/Social_Contact_Footer/releases/tag/v1.0.1
 [1.0.0]: https://github.com/dbltoe/Social_Contact_Footer/releases/tag/v1.0.0

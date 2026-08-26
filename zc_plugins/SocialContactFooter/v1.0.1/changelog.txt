@@ -1,6 +1,43 @@
 Social Contact Footer -- changelog
 ==================================
 
+v1.0.1
+------
+A patch release. Everything below was found and fixed before the plugin was
+submitted anywhere, so no store is running the versions these affected.
+
+Fixed
+- A subscriber's address reached the admin message stack unescaped. The
+  invitation and re-invitation confirmations put the address straight into the
+  message shown on Tools > Footer Newsletter Subscribers. An address is
+  attacker-supplied -- anyone can type one into the storefront form -- so this
+  was a stored cross-site-scripting hole in the admin. All three call sites now
+  pass it through zen_output_string_protected().
+- The "Newsletter Subscribers: No Account Yet" audience listed everyone. The
+  query had no exclusion clause, so it returned the same rows as "Everyone".
+  It now excludes any address already present in the customers table.
+- A storefront subscribe could fatal on PHP 8. shared/email_header.php read
+  HTTP_SERVER and DIR_WS_CATALOG without checking they were defined, and an
+  undefined constant is a fatal error on PHP 8 rather than a notice.
+
+Changed
+- Optional header image on this plugin's three emails. The confirmation
+  request, the welcome message and the registration invitation carry no image
+  at all unless the store owner adds one under "Newsletter E-Mail Header
+  Image". The store's own email/header.jpg is never read and never written, so
+  other mail the store sends is unaffected.
+- American spelling, and Zen Cart's "E-Mail". Eleven British spellings and two
+  capitalized "Email" labels were corrected across the plugin and the docs.
+
+Documentation
+- docs/COMPATIBILITY.md records why upstream Zen Cart PR 7953 does not affect
+  this plugin, and how plugin_control.name is refreshed differently on
+  v1.5.8/v2.0/v2.1 than on v2.2 and later.
+- readme.html no longer refers to an "Email field" that does not exist.
+- docs/CONFIGURATION.md no longer describes a name field on the storefront
+  form. There has not been one since before v1.0.0 was released.
+
+
 v1.0.0
 ------
 Initial release.

@@ -61,7 +61,7 @@ function scfAdminQueryString(array $overrides = [])
  * so there is no state to protect with a token.
  */
 if (isset($_GET['scf_form'])) {
-    $scfFormPath = DIR_FS_CATALOG . 'zc_plugins/SocialContactFooter/v1.0.0/pdf/newsletter_signup_form.pdf';
+    $scfFormPath = DIR_FS_CATALOG . 'zc_plugins/SocialContactFooter/v1.0.1/pdf/newsletter_signup_form.pdf';
 
     if (is_file($scfFormPath) && is_readable($scfFormPath)) {
         header('Content-Type: application/pdf');
@@ -533,7 +533,7 @@ $statusOptions = [
          * addresses on it, type them into a spreadsheet, upload that above.
          * Served by this page rather than linked directly -- see the note at
          * the top of the file about the zc_plugins allowlist. */
-        if (is_file(DIR_FS_CATALOG . 'zc_plugins/SocialContactFooter/v1.0.0/pdf/newsletter_signup_form.pdf')) {
+        if (is_file(DIR_FS_CATALOG . 'zc_plugins/SocialContactFooter/v1.0.1/pdf/newsletter_signup_form.pdf')) {
 ?>
         <p class="scf-admin-hint">
             <a class="btn btn-default" target="_blank" rel="noopener noreferrer"

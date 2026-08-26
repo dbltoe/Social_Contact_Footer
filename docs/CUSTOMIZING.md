@@ -7,7 +7,7 @@
 The block ships a real stylesheet:
 
 ```
-zc_plugins/SocialContactFooter/v1.0.0/catalog/includes/templates/template_default/css/social_contact_footer.css
+zc_plugins/SocialContactFooter/v1.0.1/catalog/includes/templates/template_default/css/social_contact_footer.css
 ```
 
 It is linked into `<head>`, so it loads before your template's own `style*.css`
@@ -131,7 +131,7 @@ footer and a light one alike, with nothing to configure.
 ## The Subscribe button gate
 
 ```
-zc_plugins/SocialContactFooter/v1.0.0/catalog/includes/templates/template_default/jscript/social_contact_footer.js
+zc_plugins/SocialContactFooter/v1.0.1/catalog/includes/templates/template_default/jscript/social_contact_footer.js
 ```
 
 Hides the Subscribe button until an address is entered and a format chosen.
@@ -183,7 +183,7 @@ rules. Complying with those terms is the store owner's responsibility.
 Both live in one file:
 
 ```
-zc_plugins/SocialContactFooter/v1.0.0/shared/networks.php
+zc_plugins/SocialContactFooter/v1.0.1/shared/networks.php
 ```
 
 It returns a plain array, keyed by network slug:
