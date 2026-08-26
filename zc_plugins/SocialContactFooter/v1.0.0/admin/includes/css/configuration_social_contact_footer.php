@@ -67,7 +67,7 @@ if ($scfViewedGroup > 0 && isset($db)) {
              * container lands at 1.08rem -- under the floor, and applied to
              * exactly the strings that must be read character by character:
              * page names, paths, true/false. Only the size is overridden, so
-             * the familiar pink-on-grey styling is left alone. */
+             * the familiar pink-on-gray styling is left alone. */
             . '.container-fluid code,.container-fluid kbd,'
             . '.container-fluid pre,.container-fluid samp{font-size:1.2rem}' . "\n"
             . '</style>' . "\n";

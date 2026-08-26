@@ -161,7 +161,7 @@ function scf_admin_import_rows($path)
      *
      * PHP 8.4 deprecates leaving $escape implicit because PHP 9 changes its
      * default, and an implicit call would emit a deprecation notice there and
-     * quietly change behaviour later. '' is also the correct value for real
+     * quietly change behavior later. '' is also the correct value for real
      * CSV: a backslash has no special meaning in the format, and it is not what
      * Excel writes. Stating it pins identical parsing on 7.4 through 8.5. */
     while (($row = fgetcsv($handle, 0, ',', '"', '')) !== false) {
@@ -372,7 +372,7 @@ function scf_admin_import_map_headings(array $row)
 }
 
 /**
- * Anything that is not recognisably HTML becomes TEXT.
+ * Anything that is not recognizably HTML becomes TEXT.
  *
  * TEXT is Zen Cart's own default for a new account, and the column is
  * varchar(4) in every supported release, so 'TEXT-Only' would be truncated --

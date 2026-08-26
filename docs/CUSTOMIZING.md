@@ -1,4 +1,4 @@
-# Customising Social Contact Footer
+# Customizing Social Contact Footer
 
 ---
 

@@ -100,7 +100,7 @@ $define = [
 
     /* Newsletter email header image ---------------------------------------
      * Optional. These emails carry NO image unless one is supplied here. */
-    'SCF_ADMIN_HEADER_HEADING' => 'Newsletter Email Header Image',
+    'SCF_ADMIN_HEADER_HEADING' => 'Newsletter E-Mail Header Image',
     'SCF_ADMIN_HEADER_INTRO' => 'Optional. <strong>These three emails &mdash; the confirmation request, the welcome message and the registration invitation &mdash; carry no image unless you add one here.</strong> Not your store logo, nothing. Anything you add appears at the top of those three and nowhere else: your store logo file is not touched, and every other email your store sends is unchanged.',
     'SCF_ADMIN_HEADER_SPEC' => 'Most email headers are <strong>550 &times; 110</strong> pixels, and that is the size to aim for. Accepted formats: <strong>%1$s</strong>. Nothing is resized or cropped, and the size is not enforced &mdash; but much wider than that gets scaled down or cropped by mail clients on a phone. Maximum %2$dKB.',
     'SCF_ADMIN_HEADER_FILE_LABEL' => 'Image File',

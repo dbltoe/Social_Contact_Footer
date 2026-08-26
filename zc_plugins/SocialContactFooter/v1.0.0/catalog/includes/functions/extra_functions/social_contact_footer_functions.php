@@ -962,8 +962,8 @@ function scf_wrapper_background()
     $color = scf_css_color($value);
 
     // scf_css_color() falls back to #444444 for anything it does not
-    // recognise. A grey slab across the footer would be a startling result for
-    // a typo, so treat an unrecognised value as "not set" instead.
+    // recognize. A gray slab across the footer would be a startling result for
+    // a typo, so treat an unrecognized value as "not set" instead.
     return ($color === '#444444' && strcasecmp($value, '#444444') !== 0) ? '' : $color;
 }
 

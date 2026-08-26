@@ -229,7 +229,7 @@ return [
         'svg' => '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><circle cx="6.2" cy="17.8" r="2.4"/><path d="M4 11.5a8.7 8.7 0 0 1 8.7 8.7" fill="none" stroke="currentColor" stroke-width="3"/><path d="M4 5.2a15 15 0 0 1 15 15" fill="none" stroke="currentColor" stroke-width="3"/></svg>',
     ],
     'email' => [
-        'label' => 'Email',
+        'label' => 'E-Mail',
         'entry_label' => '',
         'url_template' => '',
         'example' => '',

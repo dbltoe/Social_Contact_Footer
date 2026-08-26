@@ -279,9 +279,9 @@ the admin CSS hook.
 Two things to keep in mind if this is revisited:
 
 - **It is master-only.** Even merged, it lands in v3.0. The plugin still has to
-  run unchanged on v1.5.8 through v2.3, where the old behaviour stays — so the
+  run unchanged on v1.5.8 through v2.3, where the old behavior stays — so the
   corrected methods never become something to rely on.
-- **The Windows fix is not a licence to start using them.** Path comparison
+- **The Windows fix is not a license to start using them.** Path comparison
   becoming trustworthy on a Windows dev box is welcome, but it is trustworthy
   only on the newest release.
 
@@ -355,7 +355,7 @@ stored row.
 `email_format` defaults to `TEXT`, matching Zen Cart's own default for
 `customers.customers_email_format`. It is `varchar(4)`: the stored values are
 `HTML` and `TEXT`, never the `TEXT-Only` display label, which would be
-truncated. Zen Cart core also recognises `NONE` and `OUT` on its own column.
+truncated. Zen Cart core also recognizes `NONE` and `OUT` on its own column.
 
 Configuration records are written with `INSERT IGNORE` followed by an `UPDATE`
 of the metadata only. The value belongs to the store owner and is never reset

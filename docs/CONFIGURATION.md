@@ -1,7 +1,7 @@
 # Configuration reference
 
 Everything lives under **Admin → Configuration → Social Contact Footer**.
-There are 41 settings: 22 that control behaviour, and one link field per
+There are 41 settings: 22 that control behavior, and one link field per
 network.
 
 Setting titles are Title Case and end in a colon, or a question mark where the
@@ -26,8 +26,8 @@ Setting this (**`#FFFFFF`** is the usual choice) gives the block a known
 surface, so the legibility of the text and the icon badges becomes something
 you can state rather than hope for.
 
-An unrecognised value is ignored rather than guessed at, so a typo leaves the
-block as it was instead of painting a grey slab across your footer.
+An unrecognized value is ignored rather than guessed at, so a typo leaves the
+block as it was instead of painting a gray slab across your footer.
 
 ---
 
@@ -169,8 +169,8 @@ The heading writes itself from your store name, exactly like the blog line:
 
 One row on desktop: *E-Mail Address:*, *E-Mail
 Preference*, and the **Subscribe** button. At 991px and narrower the row stacks
-and the button centres. Switching off the name or format field simply removes
-it from the row.
+and the button centers. Switching off the format field simply removes it from
+the row, leaving the address and the button.
 
 ### Mail format
 
@@ -183,7 +183,7 @@ This is enforced twice:
 - the form ships with neither radio checked, both marked `required`, and the
   **Subscribe button does not appear** until an address is entered *and* a
   format chosen;
-- the server refuses a submission with no format, or an unrecognised one. It
+- the server refuses a submission with no format, or an unrecognized one. It
   does not fall back to HTML. Nothing is written and no mail is sent.
 
 The wording — **HTML** and **TEXT-Only** — deliberately matches Zen Cart's own

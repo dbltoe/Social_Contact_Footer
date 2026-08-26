@@ -303,7 +303,7 @@
 
 /* The Subscribe button is hidden by social_contact_footer.js until an email
    address has been entered and a mail format chosen. Some template resets
-   clobber the built-in [hidden] behaviour, so it is restated here -- without
+   clobber the built-in [hidden] behavior, so it is restated here -- without
    this the gate silently stops working. */
 #scfWrapper [hidden] {
     display: none !important;
@@ -367,7 +367,7 @@
         padding: 0;
     }
 
-    /* Once the row has stacked, the button has a whole line to itself. Centre
+    /* Once the row has stacked, the button has a whole line to itself. Center
        it rather than leaving it hard against the left edge under a full-width
        field. */
     #scfWrapper .scf-field-action {

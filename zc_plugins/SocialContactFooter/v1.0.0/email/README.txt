@@ -7,7 +7,7 @@ IT IS OPTIONAL, AND THERE IS NO IMAGE UNLESS YOU ADD ONE
 With no file here, those three emails go out with no image at the top at all --
 not your store logo, nothing. That is deliberate, and it is the default.
 
-The easiest way to add one is the "Newsletter Email Header Image" field on
+The easiest way to add one is the "Newsletter E-Mail Header Image" field on
 Admin > Tools > Footer Newsletter Subscribers. That handles everything below
 automatically, including replacing whatever was here before.
 

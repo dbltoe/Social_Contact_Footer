@@ -137,7 +137,7 @@ This needs no core file changes; the mechanism is documented in
 
 ## Configuration
 
-**Admin → Configuration → Social Contact Footer.** 41 settings: 22 behavioural,
+**Admin → Configuration → Social Contact Footer.** 41 settings: 22 behavioral,
 plus one link field per network. Every one is documented in
 [docs/CONFIGURATION.md](docs/CONFIGURATION.md).
 
@@ -211,9 +211,9 @@ track to a fix than a forum reply.
 
 ---
 
-## Licence
+## License
 
-GPL-2.0 — the same licence Zen Cart uses. See [LICENSE](LICENSE).
+GPL-2.0 — the same license Zen Cart uses. See [LICENSE](LICENSE).
 
 The bundled icon glyphs are simplified original drawings, **not** the official
 brand logos. All trademarks belong to their respective owners, who are not

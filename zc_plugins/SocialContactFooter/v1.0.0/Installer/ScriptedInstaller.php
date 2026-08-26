@@ -67,7 +67,7 @@ class ScriptedInstaller extends ScriptedInstallBase
     {
         // The install routine is idempotent, so re-running it brings any older
         // installation up to the current schema and settings without touching
-        // values the store owner has already customised.
+        // values the store owner has already customized.
         return $this->executeInstall();
     }
 
@@ -711,7 +711,7 @@ class ScriptedInstaller extends ScriptedInstallBase
                 'key' => 'SCF_WRAPPER_BACKGROUND',
                 'title' => 'Block Background Color:',
                 'value' => '',
-                'description' => 'Optional, and off by default: the block simply sits on whatever your footer already uses. <strong>Set it to <code>#FFFFFF</code></strong> (or any CSS color) if you want the block to carry its own background. That is worth doing for accessibility -- the icon badges use fixed brand colors, and the text takes its color from your template, so on an unusual footer background the contrast of what sits inside this block cannot be predicted. Giving it a known surface makes it predictable. An unrecognised value is ignored rather than guessed at.',
+                'description' => 'Optional, and off by default: the block simply sits on whatever your footer already uses. <strong>Set it to <code>#FFFFFF</code></strong> (or any CSS color) if you want the block to carry its own background. That is worth doing for accessibility -- the icon badges use fixed brand colors, and the text takes its color from your template, so on an unusual footer background the contrast of what sits inside this block cannot be predicted. Giving it a known surface makes it predictable. An unrecognized value is ignored rather than guessed at.',
                 'sort_order' => 95,
                 'set_function' => '',
             ],
