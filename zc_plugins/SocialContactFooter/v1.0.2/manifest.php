@@ -32,7 +32,7 @@
  * That is also why nothing state-dependent belongs in this description -- see
  * the note on the name below.
  */
-$scfPluginDir = 'zc_plugins/SocialContactFooter/v1.0.1/';
+$scfPluginDir = 'zc_plugins/SocialContactFooter/v1.0.2/';
 $scfReadmeUrl = (defined('DIR_WS_CATALOG') ? DIR_WS_CATALOG : '/') . $scfPluginDir . 'readme.html';
 $scfGithubUrl = 'https://github.com/dbltoe/Social_Contact_Footer';
 
@@ -130,8 +130,14 @@ $scfIsOff = defined('SCF_STATUS') && SCF_STATUS !== 'true';
  *
  *   "Social Contact Footer - Mod Not Turned On" = 41 characters, 23 to spare.
  *
- * The banner below carries the visual weight instead: it goes in the
- * description, which is a TEXT column with no such limit.
+ * The name is also the only place this notice CAN live. `plugin_control.description`
+ * looks like the roomier option -- it is a TEXT column, and the info box echoes it
+ * as raw HTML -- but on v1.5.8/v2.0/v2.1 updatePluginControl() calls
+ * upsert($values, ['id'], ['infs']), so the description is written by the INSERT
+ * that creates the row and never again. Anything state-dependent there freezes at
+ * whatever was true on the very first scan. The name is rewritten directly by
+ * admin/includes/functions/extra_functions/social_contact_footer_admin.php, which
+ * is what lets the notice clear when the switch is turned on.
  */
 $scfName = 'Social Contact Footer';
 if ($scfIsOff) {
@@ -170,7 +176,7 @@ if ($scfForumUrl !== '') {
 }
 
 return [
-    'pluginVersion' => 'v1.0.1',
+    'pluginVersion' => 'v1.0.2',
     'pluginName' => $scfName,
     'pluginDescription' =>
         'Adds an owner-configurable block to the storefront footer: social-media icons, '

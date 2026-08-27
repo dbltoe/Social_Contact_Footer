@@ -179,9 +179,16 @@ the same in v2.2+'s `plugin_manager.php`.
 Both halves matter. Unescaped means markup in the name *would* render; 64
 characters means a value carrying markup can be **truncated mid-tag**, silently
 on a normal server and fatally under MySQL `STRICT_ALL_TABLES`. That is why the
-"Mod Not Turned On" notice appends **plain text** to the name (41 characters in
-all) and puts its styled banner in `pluginDescription` instead, which is a
-`TEXT` column with no such limit.
+"Mod Not Turned On" notice appends **plain text** to the name — 41 characters in
+all, 23 to spare.
+
+`pluginDescription` looks like the roomier home for it, being a `TEXT` column
+that the info box echoes as raw HTML. It is not usable for anything
+state-dependent: see the section above — on v1.5.8/v2.0/v2.1 the description is
+written by the INSERT that creates the row and never refreshed, so a notice
+placed there would freeze at whatever was true on the first scan. The name is
+rewritten directly by the plugin's own admin-side function, which is what lets
+the notice clear.
 
 The row's identity is `unique_key`, not the name — `colKey` in the table
 definition — so varying the name per state does not disturb row selection or
@@ -219,18 +226,26 @@ Guard with `defined()`. The constant does not exist when the plugin is not
 installed, and the manifest is read for *every* plugin on the filesystem,
 installed or not.
 
-**The banner's colors are constrained, not chosen.** `#D9534F` reaches only
-3.96:1 against pure white — the lightest background there is — so it can never
-meet WCAG's 4.5:1 for ordinary body text. It clears 3:1 easily, which is the
-threshold for large text and for non-text elements, so it is used for the
-headline (19px bold, which is what makes it *large* text) and the left rule,
-while the explanatory sentence uses `#843534` at 7.54:1.
+**The warning reds are constrained, not chosen.** `#D9534F` — the shade Plugin
+Manager itself uses for "not installed" — reaches only 3.96:1 against pure
+white, the lightest background there is, so it can never meet WCAG's 4.5:1 for
+ordinary body text. It clears 3:1 easily, which is the threshold for large text
+and for non-text elements.
 
-The headline size is declared in `px` deliberately. An `em` value would inherit
-whatever base size the admin theme sets, and a 13px base would silently drop it
-below the 18.66px that makes bold text "large" — taking the contrast out of
-compliance without anything visibly changing. `scf_manifest.php` computes all
-three ratios rather than trusting the comment.
+That is why the plugin's own admin page uses `#CE4844` for the Delete button
+face (4.53:1 with white text on it) and `#b03a37` for its hover state and for
+the *Unsubscribed* status text (5.99:1 on white, 5.49:1 on a zebra stripe).
+Matching Plugin Manager's exact red as body text was not available, so the
+nearest shade that clears the bar was used instead.
+
+It is also part of why the "Mod Not Turned On" notice is plain text in the
+plugin name rather than styled anything: the name is `varchar(64)` and echoed
+unescaped, and the description cannot carry state at all on half the supported
+releases. There is nowhere to put a styled warning that both renders reliably
+and clears itself.
+
+Every one of these ratios is computed from the declared hex values before each
+release rather than being taken on trust from this paragraph.
 
 ---
 

@@ -3,6 +3,35 @@
 All notable changes to this project are recorded here. This project follows
 [Semantic Versioning](https://semver.org/).
 
+## [1.0.2] — 2026-08-27
+
+**Documentation only. No code behavior changes at all** — if 1.0.1 is running
+happily, nothing here will look different on your storefront or in your admin.
+It is published because two of the corrections are in `changelog.txt`, which
+ships inside the plugin, and one is in a code comment.
+
+### Fixed
+
+- **The changelog described a red banner in the Plugin Manager info panel.
+  There has never been one.** The notice that appears when the plugin is
+  switched off is the **Mod Not Turned On** suffix on the plugin *name*, and
+  that is the only place it can be: on Zen Cart v1.5.8, v2.0 and v2.1 the
+  plugin description is written by the INSERT that first creates the row and
+  never refreshed, so anything state-dependent placed there would freeze on the
+  first scan and never clear. The banner was designed, reasoned about, and
+  dropped for that reason — but three documents and a code comment went on
+  describing it.
+- **`docs/COMPATIBILITY.md` explained the `#D9534F` contrast reasoning as if it
+  applied to that banner.** It has been rewritten to describe where those reds
+  actually are: `#CE4844` on the Delete button face (4.53:1 with white text)
+  and `#b03a37` for its hover state and for the *Unsubscribed* status
+  (5.99:1 on white). It also cited a test file that no longer exists.
+- **The footer observer's notes said `NOTIFY_FOOTER_AFTER_NAVSUPP` arrived in
+  Zen Cart v2.2.0.** It is present from v2.1.0. Checked against the v1.5.8,
+  v2.0, v2.1, v2.2, v2.3 and v3.0 source trees rather than taken from release
+  notes. Nothing about which notifiers the plugin observes has changed — only
+  the comment describing them.
+
 ## [1.0.1] — 2026-08-26
 
 A patch release. Worth taking if you are on 1.0.0, mainly for the corrected
@@ -82,8 +111,8 @@ its customers. The newsletter signup is an addition rather than the point.
 - **Off on a fresh install.** The master switch defaults to `false`, so a
   half-configured block never goes live while the owner is still setting it up.
   While it is off, Plugin Manager shows **Mod Not Turned On** beside the plugin
-  name, with a red banner in the info panel naming the setting to change — so an
-  unfinished setup announces itself instead of looking like a broken plugin.
+  name — so an unfinished setup announces itself instead of looking like a
+  broken plugin.
 - Footer block rendered through `NOTIFY_FOOTER_AFTER_NAVSUPP` (Zen Cart v2.1+)
   with a `NOTIFY_FOOTER_END` fallback for older carts and older templates. No
   template file is edited or overridden.
@@ -189,5 +218,6 @@ its customers. The newsletter signup is an addition rather than the point.
 - PHP: lint and the full harness suite on 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5.
 - Accessibility: WCAG 2.1 AA, with one documented brand-color deviation.
 
+[1.0.2]: https://github.com/dbltoe/Social_Contact_Footer/releases/tag/v1.0.2
 [1.0.1]: https://github.com/dbltoe/Social_Contact_Footer/releases/tag/v1.0.1
 [1.0.0]: https://github.com/dbltoe/Social_Contact_Footer/releases/tag/v1.0.0

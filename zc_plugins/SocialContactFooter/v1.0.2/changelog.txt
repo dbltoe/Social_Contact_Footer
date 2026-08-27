@@ -1,6 +1,33 @@
 Social Contact Footer -- changelog
 ==================================
 
+v1.0.2
+------
+Documentation only. No code behavior changes at all -- if v1.0.1 is running
+happily, nothing here will look different on your storefront or in your admin.
+It is published because two of the corrections are in this file, which ships
+inside the plugin, and one is in a code comment.
+
+Fixed
+- This changelog described a red banner in the Plugin Manager info panel. There
+  has never been one. The notice that appears when the plugin is switched off is
+  the "Mod Not Turned On" suffix on the plugin NAME, and that is the only place
+  it can be: on Zen Cart v1.5.8, v2.0 and v2.1 the plugin description is written
+  by the INSERT that first creates the row and never refreshed, so anything
+  state-dependent placed there would freeze on the first scan and never clear.
+  The banner was designed, reasoned about, and dropped for that reason -- but
+  three documents and a code comment went on describing it.
+- docs/COMPATIBILITY.md explained the #D9534F contrast reasoning as if it
+  applied to that banner. It now describes where those reds actually are:
+  #CE4844 on the Delete button face (4.53:1 with white text on it) and #b03a37
+  for its hover state and for the Unsubscribed status (5.99:1 on white).
+- The footer observer's notes said NOTIFY_FOOTER_AFTER_NAVSUPP arrived in Zen
+  Cart v2.2.0. It is present from v2.1.0. Checked against the v1.5.8, v2.0,
+  v2.1, v2.2, v2.3 and v3.0 source trees rather than taken from release notes.
+  Nothing about which notifiers the plugin observes has changed, only the
+  comment describing them.
+
+
 v1.0.1
 ------
 A patch release. Worth taking if you are on v1.0.0, mainly for the corrected
@@ -75,12 +102,11 @@ Storefront
 - Off on a fresh install. The master switch defaults to false, so a
   half-configured block never goes live while the owner is still setting it up.
   While it is off, Plugin Manager shows "Mod Not Turned On" beside the plugin
-  name and a red banner in the info panel naming the setting to change. The name
-  suffix is plain text by necessity: plugin_control.name is varchar(64) and the
-  list echoes it unescaped, so markup there could be truncated mid-tag. In the
-  banner #D9534F carries the headline and the rule, where 3:1 is the bar it
-  clears; the sentence below uses a darker red, because #D9534F cannot reach
-  4.5:1 as body text against any background that exists.
+  name. The suffix is plain text by necessity: plugin_control.name is
+  varchar(64) and the list echoes it unescaped, so markup there could be
+  truncated mid-tag. The name is also the only place the notice can live -- on
+  ZC v1.5.8/v2.0/v2.1 the plugin description is written once, when the row is
+  first created, so a notice there would never clear.
 - Footer block rendered through NOTIFY_FOOTER_AFTER_NAVSUPP (Zen Cart v2.1+)
   with a NOTIFY_FOOTER_END fallback for older carts and older templates. No
   template file is edited or overridden.

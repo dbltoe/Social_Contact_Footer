@@ -11,9 +11,12 @@
  * Two notifiers are observed so the block lands in a sensible place whatever
  * the shop is running:
  *
- *   NOTIFY_FOOTER_AFTER_NAVSUPP  Fires inside tpl_footer.php, added in ZC
- *                                v2.2.0. This is the preferred spot -- the
- *                                block sits with the rest of the footer.
+ *   NOTIFY_FOOTER_AFTER_NAVSUPP  Fires inside tpl_footer.php. Present from ZC
+ *                                v2.1.0 onward -- checked against the v1.5.8,
+ *                                v2.0, v2.1, v2.2, v2.3 and v3.0 source trees,
+ *                                not taken from the release notes. This is the
+ *                                preferred spot: the block sits with the rest
+ *                                of the footer.
  *   NOTIFY_FOOTER_END            Fires in tpl_main_page.php just before the
  *                                closing </body> tag. Present since long
  *                                before v1.5.8, and still present on v3.0.0,

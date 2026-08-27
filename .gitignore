@@ -12,8 +12,6 @@ desktop.ini
 tmp/
 dist/
 
-# PHP builds dropped in for tests\run_all.ps1 -- see tests/README.md
-tests/php/
 *.log
 *.bak
 *.orig
@@ -22,3 +20,9 @@ tests/php/
 # Archives produced when packaging a release
 *.zip
 *.tar.gz
+
+# Maintainer tooling -- kept local, never shipped.
+# The release package excludes these anyway (tools/build_package.ps1 copies only
+# the plugin, docs/ and readme.html), so this keeps them out of the repo as well.
+tests/
+tools/
