@@ -10,15 +10,20 @@ fixes below is a security fix.
 
 ### Added
 
-- **`pluginId` is set.** It was `0` in 1.0.0, which is why Plugin Manager never
-  offered an update. If you installed 1.0.0 on Zen Cart **v1.5.8, v2.0 or
-  v2.1**, upgrading in place will not repair that by itself: those releases
-  write `plugin_control.zc_contrib_id` only when the row is first created, and
-  refresh nothing but `infs` afterwards. To clear it, remove the
-  `zc_plugins/SocialContactFooter/` directory, open Plugin Manager once so the
-  stale row is swept, then upload 1.0.1. Zen Cart v2.2 and later rewrite the
-  value on every scan and need nothing done. This affects only the update
-  notice — the plugin itself works either way.
+- **`pluginId` is correct: `2447`.** The 1.0.0 uploaded to the Plugins Library
+  carried `2249`, which belongs to an unrelated plugin — *Free Shipping Options
+  Clone*. Plugin Manager writes this to `plugin_control.zc_contrib_id` and asks
+  the version server about it, so on a 1.0.0 store the update check has been
+  asking after somebody else's shipping module.
+
+  If you installed 1.0.0 on Zen Cart **v1.5.8, v2.0 or v2.1**, upgrading in
+  place will not repair that by itself: those releases write `zc_contrib_id`
+  only when the row is first created and refresh nothing but `infs` afterwards.
+  To clear it, remove the `zc_plugins/SocialContactFooter/` directory, open
+  Plugin Manager once so the stale row is swept away, then upload 1.0.1. Zen
+  Cart v2.2 and later rewrite the value on every scan and need nothing done.
+
+  This affects only the update notice. The plugin itself works either way.
 
 ### Fixed
 

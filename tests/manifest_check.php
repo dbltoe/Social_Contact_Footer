@@ -61,9 +61,14 @@ check('pluginId is an integer, not a numeric string',
     is_int($manifest['pluginId']));
 check('pluginId matches the plugin page: ' . $manifest['pluginId'],
     $manifest['pluginId'] === 2447);
-/* 860 is Scheduled Events. Pointing Plugin Manager at another plugin's id
- * would offer store owners the wrong download. */
-check('pluginId is not another plugin of ours', $manifest['pluginId'] !== 860);
+/* This has already gone wrong once: the 1.0.0 uploaded to the Plugins Library
+ * carried 2249, which is "Free Shipping Options Clone" -- so every store that
+ * installed it has Plugin Manager asking the version server about an unrelated
+ * shipping module, and on v1.5.8/v2.0/v2.1 that value is frozen in
+ * zc_contrib_id. 860 is Scheduled Events, one paste away. */
+foreach ([2249 => 'Free Shipping Options Clone', 860 => 'Scheduled Events'] as $id => $whose) {
+    check("pluginId is not $id ($whose)", $manifest['pluginId'] !== $id);
+}
 check('GitHub link present',
     strpos($desc, 'href="https://github.com/dbltoe/Social_Contact_Footer"') !== false);
 /* They must look like Plugin Manager's own Install / Uninstall / Disable. */
