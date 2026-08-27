@@ -5,8 +5,9 @@ All notable changes to this project are recorded here. This project follows
 
 ## [1.0.1] — 2026-08-26
 
-A patch release, and **anyone running 1.0.0 should take it**. The first of the
-fixes below is a security fix.
+A patch release. Worth taking if you are on 1.0.0, mainly for the corrected
+Plugins Library id — without it Plugin Manager cannot tell you about future
+updates.
 
 ### Added
 
@@ -27,13 +28,18 @@ fixes below is a security fix.
 
 ### Fixed
 
-- **A subscriber's address reached the admin message stack unescaped.**
-  *(Security.)* The invitation and re-invitation confirmations put the address
-  straight into the message shown on **Tools → Footer Newsletter Subscribers**.
-  An address is attacker-supplied — anyone can type one into the storefront
-  form — so a visitor could store markup that ran in the admin's browser the
-  next time a store owner invited or re-invited them. All three call sites now
-  pass it through `zen_output_string_protected()`. Present in 1.0.0.
+- **A subscriber's address reached the admin message stack unescaped.** The
+  invitation and re-invitation confirmations put the address straight into the
+  message shown on **Tools → Footer Newsletter Subscribers**. All three call
+  sites now pass it through `zen_output_string_protected()`.
+
+  **This was not exploitable, and no action is needed beyond upgrading.** Both
+  paths that can store an address — the storefront form and the CSV import —
+  validate it with `zen_validate_email()`, which does not admit `<` or `>`, and
+  the message is rendered as text content rather than inside an attribute. The
+  escaping is defense in depth: it is what should have been there, and it keeps
+  the message safe if an address ever reaches the table from somewhere that
+  does not validate.
 - **The *Newsletter Subscribers: No Account Yet* audience listed everyone.** The
   query had no exclusion clause, so it returned the same rows as
   *Everyone* — a store owner picking it would have mailed people who already had
