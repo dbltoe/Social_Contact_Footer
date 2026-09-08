@@ -3,6 +3,23 @@
 All notable changes to this project are recorded here. This project follows
 [Semantic Versioning](https://semver.org/).
 
+## [1.0.3] — 2026-09-08
+
+One markup change, no settings or behavior changes. Nothing looks different.
+
+### Changed
+
+- **The two footer headings — the icon heading and the newsletter heading — are
+  now `<h2>` rather than `<h3>`.** The footer is a section of the page, so its
+  headings belong one level under the page's `<h1>`. As `<h3>` they skipped a
+  level on any page whose last heading before the footer was the `<h1>` itself
+  (a shopping cart or contact page, typically), and accessibility checkers
+  reported it on every such page. An `<h2>` can only ever follow the `<h1>` or
+  something deeper, so it is correct whatever the store puts above the footer.
+  The headings' size comes from `.scf-heading` in the stylesheet, not from the
+  tag, so they render exactly as before. Found with axe-core and Siteimprove
+  on myzencartzone.com.
+
 ## [1.0.2] — 2026-08-27
 
 **Documentation only. No code behavior changes at all** — if 1.0.1 is running
@@ -218,6 +235,7 @@ its customers. The newsletter signup is an addition rather than the point.
 - PHP: lint and the full harness suite on 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5.
 - Accessibility: WCAG 2.1 AA, with one documented brand-color deviation.
 
+[1.0.3]: https://github.com/dbltoe/Social_Contact_Footer/releases/tag/v1.0.3
 [1.0.2]: https://github.com/dbltoe/Social_Contact_Footer/releases/tag/v1.0.2
 [1.0.1]: https://github.com/dbltoe/Social_Contact_Footer/releases/tag/v1.0.1
 [1.0.0]: https://github.com/dbltoe/Social_Contact_Footer/releases/tag/v1.0.0

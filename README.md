@@ -126,7 +126,7 @@ Full instructions, including upgrading and uninstalling, are in
 
 Selecting the plugin in Plugin Manager shows an info panel with **Read Me** and
 **GitHub** buttons beside Install / Uninstall / Disable. Read Me opens
-[`readme.html`](zc_plugins/SocialContactFooter/v1.0.2/readme.html) — a
+[`readme.html`](zc_plugins/SocialContactFooter/v1.0.3/readme.html) — a
 self-contained offline manual covering every setting — so a store owner never
 has to go looking elsewhere. Both work before the plugin is installed.
 
