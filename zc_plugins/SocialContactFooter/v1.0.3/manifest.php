@@ -32,7 +32,7 @@
  * That is also why nothing state-dependent belongs in this description -- see
  * the note on the name below.
  */
-$scfPluginDir = 'zc_plugins/SocialContactFooter/v1.0.2/';
+$scfPluginDir = 'zc_plugins/SocialContactFooter/v1.0.3/';
 $scfReadmeUrl = (defined('DIR_WS_CATALOG') ? DIR_WS_CATALOG : '/') . $scfPluginDir . 'readme.html';
 $scfGithubUrl = 'https://github.com/dbltoe/Social_Contact_Footer';
 
@@ -176,7 +176,7 @@ if ($scfForumUrl !== '') {
 }
 
 return [
-    'pluginVersion' => 'v1.0.2',
+    'pluginVersion' => 'v1.0.3',
     'pluginName' => $scfName,
     'pluginDescription' =>
         'Adds an owner-configurable block to the storefront footer: social-media icons, '

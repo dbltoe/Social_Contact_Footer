@@ -526,7 +526,13 @@ function scf_render_icons()
 
     $heading = scf_resolve_heading('SCF_ICONS_HEADING', defined('SCF_DEFAULT_ICONS_HEADING') ? SCF_DEFAULT_ICONS_HEADING : '');
     if ($heading !== '') {
-        $html .= '<h3 class="scf-heading">' . zen_output_string_protected($heading) . '</h3>' . "\n";
+        // An h2, not an h3 (v1.0.3). The footer is a section of the page, so its heading
+        // belongs one level under the page's h1; as an h3 it skipped a level on any page
+        // whose last heading before the footer was the h1 -- a cart or contact page -- and
+        // accessibility checkers reported it. h2 can only ever follow the h1 or a deeper
+        // level, so it is correct on every page regardless of what the store put above it.
+        // The size is set by .scf-heading in the stylesheet, so nothing changes visually.
+        $html .= '<h2 class="scf-heading">' . zen_output_string_protected($heading) . '</h2>' . "\n";
     }
 
     $html .= '<ul class="scf-icon-list">' . "\n";
@@ -720,7 +726,8 @@ function scf_render_subscribe_form()
         $heading = scf_lang('SCF_NEWSLETTER_HEADING_FALLBACK');
     }
     if ($heading !== '') {
-        $html .= '<h3 class="scf-heading">' . zen_output_string_protected($heading) . '</h3>' . "\n";
+        // h2 for the same reason as the icons heading above (v1.0.3).
+        $html .= '<h2 class="scf-heading">' . zen_output_string_protected($heading) . '</h2>' . "\n";
     }
 
     $html .= zen_draw_form('scf_subscribe', zen_href_link(FILENAME_DEFAULT, '', 'SSL'), 'post', 'class="scf-form"') . "\n";

@@ -16,7 +16,7 @@ zc_plugins/SocialContactFooter/
 Upload it so it lands at:
 
 ```
-<your store root>/zc_plugins/SocialContactFooter/v1.0.2/
+<your store root>/zc_plugins/SocialContactFooter/v1.0.3/
 ```
 
 That directory should contain `manifest.php`, `readme.html`, `changelog.txt`,
@@ -136,7 +136,7 @@ the template from a current release, or add this where you want the block:
 The stylesheet is not loading. View source and check this URL does not 404:
 
 ```
-zc_plugins/SocialContactFooter/v1.0.2/catalog/includes/templates/template_default/css/social_contact_footer.css
+zc_plugins/SocialContactFooter/v1.0.3/catalog/includes/templates/template_default/css/social_contact_footer.css
 ```
 
 Zen Cart's shipped `zc_plugins/.htaccess` denies everything then explicitly
@@ -150,7 +150,7 @@ rule permitting those types under `zc_plugins/`.
 The gate script is not loading. Same check as above, for:
 
 ```
-zc_plugins/SocialContactFooter/v1.0.2/catalog/includes/templates/template_default/jscript/social_contact_footer.js
+zc_plugins/SocialContactFooter/v1.0.3/catalog/includes/templates/template_default/jscript/social_contact_footer.js
 ```
 
 This is deliberately not fatal: the button is rendered visible by the server and
@@ -202,5 +202,5 @@ rewrites the `admin_pages` records.
 
 Same cause as the stylesheet: your server is not serving files from
 `zc_plugins/`. The file is in your local copy of the plugin at
-`zc_plugins/SocialContactFooter/v1.0.2/readme.html` and opens in any browser by
+`zc_plugins/SocialContactFooter/v1.0.3/readme.html` and opens in any browser by
 double-clicking it.

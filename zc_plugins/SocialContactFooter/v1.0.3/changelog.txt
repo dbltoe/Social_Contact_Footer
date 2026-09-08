@@ -1,6 +1,20 @@
 Social Contact Footer -- changelog
 ==================================
 
+v1.0.3
+------
+One markup change, no settings or behavior changes. Nothing looks different.
+
+Changed
+- The two footer headings (the icon heading and the newsletter heading) are now
+  <h2> rather than <h3>. The footer is a section of the page, so its headings
+  belong one level under the page's <h1>. As <h3> they skipped a level on any
+  page whose last heading before the footer was the <h1> itself (a shopping
+  cart or contact page, typically), and accessibility checkers reported it. An
+  <h2> can only ever follow the <h1> or something deeper, so it is correct
+  whatever the store puts above the footer. The size comes from .scf-heading in
+  the stylesheet, not the tag, so they render exactly as before.
+
 v1.0.2
 ------
 Documentation only. No code behavior changes at all -- if v1.0.1 is running
