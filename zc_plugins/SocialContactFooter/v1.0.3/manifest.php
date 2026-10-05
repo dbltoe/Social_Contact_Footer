@@ -154,26 +154,14 @@ $scfLinks =
     . '<a href="' . $scfGithubUrl . '" target="_blank" rel="noopener noreferrer"'
     . ' class="btn btn-primary" role="button"'
     . ' style="margin:0 ' . $scfButtonGap . ' 0 0">GitHub</a>'
+    // The support thread, a third button (every free dbltoe plugin has one, 2026-10-05).
+    // Renders nothing while $scfForumUrl is empty.
+    . ($scfForumUrl !== ''
+        ? '<a href="' . $scfForumUrl . '" target="_blank" rel="noopener noreferrer"'
+          . ' class="btn btn-primary" role="button"'
+          . ' style="margin:0 ' . $scfButtonGap . ' 0 0">Forum Support Thread</a>'
+        : '')
     . '</div>';
-
-/**
- * The support thread, as an ordinary link rather than a third button.
- *
- * Deliberately not a button: Install, Uninstall, Disable, Read Me and GitHub are
- * all things the owner does with the plugin. Asking for help is a different kind
- * of act, and giving it the same weight as Uninstall would be misleading. It
- * sits on its own line below them, left-aligned with the buttons above.
- *
- * Renders nothing while $scfForumUrl is empty.
- */
-$scfForumLink = '';
-if ($scfForumUrl !== '') {
-    $scfForumLink =
-        '<div style="margin:8px 0 0;padding:0 0 0 ' . $scfButtonGap . '">'
-        . '<a href="' . $scfForumUrl . '" target="_blank" rel="noopener noreferrer">'
-        . 'Forum Support Thread</a>'
-        . '</div>';
-}
 
 return [
     'pluginVersion' => 'v1.0.3',
@@ -183,8 +171,7 @@ return [
         . 'a blog link, and an optional newsletter signup that asks each subscriber '
         . 'whether they would prefer HTML or plain-text mail. Every icon stays hidden '
         . 'until you supply a link for it, so nothing appears until you want it to.'
-        . $scfLinks
-        . $scfForumLink,
+        . $scfLinks,
     // Shown as the Author in Plugin Manager, and stored in
     // plugin_control.author / plugin_control_versions.author (varchar(64)).
     'pluginAuthor' => 'My Zen Cart Host (dbltoe)',
