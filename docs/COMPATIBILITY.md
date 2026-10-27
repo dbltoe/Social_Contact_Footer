@@ -106,7 +106,7 @@ them, so that is where the constants live, wrapped in `defined()` guards.
 directory first and then each installed plugin's via
 `FileSystem::findPluginAdminPage()`. Unchanged from v1.5.8 to v3.0.0-dev.
 
-Note this only resolves for *installed* plugins — which is why the Read Me link
+Note this only resolves for *installed* plugins — which is why the ReadMe link
 in Plugin Manager points at the `.html` file directly rather than at an admin
 page. It has to work before installation.
 
@@ -128,7 +128,7 @@ columns in the plugin list table.
 
 So markup placed in `pluginDescription` appears exactly once, in the right
 panel, with no core change and no notifier needed — there is no notifier fired
-for that panel, which is why this route is used. The plugin puts its Read Me
+for that panel, which is why this route is used. The plugin puts its ReadMe
 and GitHub buttons there.
 
 `tableBlock()` wraps every `setBoxContent()` item in its own
@@ -164,7 +164,7 @@ Two consequences the plugin has to live with:
   `admin/includes/functions/extra_functions/social_contact_footer_admin.php`,
   which every release loads on every admin page, and cleared by the uninstaller
   — because once uninstalled, nothing of ours loads to fix it.
-- **The Read Me URL does not self-correct on v1.5.8–v2.1.** It is built from
+- **The ReadMe URL does not self-correct on v1.5.8–v2.1.** It is built from
   `DIR_WS_CATALOG` at scan time, so a store that later moves keeps the old path
   in `description` until the plugin is re-installed. Uninstall + install fixes
   it; nothing else will.

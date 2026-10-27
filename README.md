@@ -124,11 +124,13 @@ Full instructions, including upgrading and uninstalling, are in
 
 ### Documentation is in the admin, not just here
 
-Selecting the plugin in Plugin Manager shows an info panel with **Read Me** and
-**GitHub** buttons beside Install / Uninstall / Disable. Read Me opens
-[`readme.html`](zc_plugins/SocialContactFooter/v1.0.3/readme.html) — a
+Selecting the plugin in Plugin Manager shows an info panel with **ReadMe**,
+**Settings** (once installed), **Forum Thread** and **GitHub** buttons beside
+Install / Uninstall / Disable. ReadMe opens
+[`readme.html`](zc_plugins/SocialContactFooter/v1.0.4/readme.html) — a
 self-contained offline manual covering every setting — so a store owner never
-has to go looking elsewhere. Both work before the plugin is installed.
+has to go looking elsewhere. Settings opens the plugin's Configuration page;
+the other three work before the plugin is installed.
 
 This needs no core file changes; the mechanism is documented in
 [docs/COMPATIBILITY.md](docs/COMPATIBILITY.md).

@@ -17,7 +17,7 @@
  * store owner is already looking, with no core file changed and no notifier to
  * hook (there isn't one for that panel).
  *
- * The Read Me link is built from DIR_WS_CATALOG rather than hard-coded, so it
+ * The ReadMe link is built from DIR_WS_CATALOG rather than hard-coded, so it
  * works whatever the store lives at and whatever the admin directory has been
  * renamed to. Zen Cart's shipped `zc_plugins/.htaccess` denies everything then
  * explicitly re-allows `.html`, so readme.html is reachable by design.
@@ -26,13 +26,11 @@
  * Manager scan, so the URL self-corrects if the store ever moves. On v1.5.8,
  * v2.0 and v2.1 it is not: those releases update only the `infs` column for a
  * row that already exists, so the description is whatever was captured the
- * first time Plugin Manager saw the plugin. Uninstall and re-install is the
- * only thing that refreshes it there.
- *
- * That is also why nothing state-dependent belongs in this description -- see
- * the note on the name below.
+ * first time Plugin Manager saw the plugin, and only this plugin's installer
+ * refreshes it there (at Install, Upgrade and Uninstall). The one
+ * state-dependent part, the Settings button, is handled below.
  */
-$scfPluginDir = 'zc_plugins/SocialContactFooter/v1.0.3/';
+$scfPluginDir = 'zc_plugins/SocialContactFooter/v1.0.4/';
 $scfReadmeUrl = (defined('DIR_WS_CATALOG') ? DIR_WS_CATALOG : '/') . $scfPluginDir . 'readme.html';
 $scfGithubUrl = 'https://github.com/dbltoe/Social_Contact_Footer';
 
@@ -49,7 +47,7 @@ $scfGithubUrl = 'https://github.com/dbltoe/Social_Contact_Footer';
  * half the supported range short of an uninstall and re-install.
  *
  * An empty string renders nothing at all, which was the right outcome before
- * the thread existed: a "Forum Support Thread" link that 404s is worse than no
+ * the thread existed: a "Forum Thread" link that 404s is worse than no
  * link, because somebody with a problem follows it.
  *
  * Stored as the permalink to the opening post rather than the bare thread
@@ -61,29 +59,55 @@ $scfGithubUrl = 'https://github.com/dbltoe/Social_Contact_Footer';
 $scfForumUrl = 'https://www.zen-cart.com/showthread.php/231169-Social-Contact-Footer?p=1412052#post1412052';
 
 /**
- * Both are styled as buttons matching Plugin Manager's own controls, which use
+ * The Settings button: this plugin's Configuration page, shown only once the
+ * plugin is installed. Its gID is assigned at install, so it differs from
+ * store to store and can't be written here; it's read from the admin page the
+ * installer registers (page key configSocialContactFooter). The link is
+ * relative ("index.php?cmd=configuration&gID=N") because Plugin Manager is an
+ * admin page, so it survives a domain or admin-folder rename.
+ *
+ * Zen Cart reads manifests only on the Plugin Manager page, but the lookup is
+ * still guarded so a manifest read anywhere else (no database, catalog side,
+ * CLI) just leaves the button out. On v2.2 and later this file is re-read on
+ * every Plugin Manager visit, so the button follows the install state by
+ * itself; on v1.5.8, v2.0 and v2.1 the installer saves the re-read
+ * description at Install, Upgrade and Uninstall
+ * (scfRefreshPluginDescription).
+ */
+$scfSettingsUrl = '';
+if (defined('IS_ADMIN_FLAG') && IS_ADMIN_FLAG === true && defined('TABLE_ADMIN_PAGES')
+    && isset($GLOBALS['db']) && is_object($GLOBALS['db'])) {
+    $scfPage = $GLOBALS['db']->Execute(
+        "SELECT main_page, page_params FROM " . TABLE_ADMIN_PAGES
+        . " WHERE page_key = 'configSocialContactFooter' LIMIT 1"
+    );
+    if (!$scfPage->EOF && defined($scfPage->fields['main_page'])) {
+        $scfSettingsUrl = 'index.php?cmd=' . constant($scfPage->fields['main_page'])
+            . '&' . $scfPage->fields['page_params'];
+    }
+}
+
+/**
+ * The buttons are styled like Plugin Manager's own controls, which use
  * exactly `class="btn btn-primary" role="button"` for Install, Enable, Disable
  * and Uninstall.
  *
  * They end up side by side because Zen Cart wraps every setBoxContent() item in
  * its own `<div class="row">` -- the core buttons are each a separate item, so
- * they stack, whereas this whole description is a single item, so two
+ * they stack, whereas this whole description is a single item, so the
  * inline-block buttons within it line up on one row. That holds in v1.5.8 and
- * v3.0.0-dev alike; both build the box through the same tableBlock() method.
+ * v3.0.0 alike; both build the box through the same tableBlock() method.
  *
- * Spacing is set explicitly rather than inherited. Admin themes differ on
- * whether `.btn` carries a margin, so relying on it left the two buttons
- * touching. Every gap around the pair is the same 6px: the wrapper supplies
- * the space before the first button, and each button supplies the space after
- * itself -- giving before = between = after.
+ * One row: ReadMe | Settings | Forum Thread | GitHub. A second line would push
+ * the Author line and the core buttons further down the panel. Spacing is set
+ * inline, which beats any theme `.btn` margin: every gap is 4px (the wrapper
+ * supplies the space before the first button, each button the space after
+ * itself) and the side padding is 8px rather than Bootstrap's 12px, so all
+ * four fit on one line in Plugin Manager's side panel from a 1366px-wide
+ * window up (measured on the v2.2 admin).
  *
- * The margins are inline on the anchors, which beats any theme `.btn` margin
- * outright, so the result is the same whatever admin template is in use.
- *
- * The wrapper's 10px top margin separates the pair from the description text
- * above. The core's own buttons each sit in their own `<div class="row">` and
- * follow a short Author line, so they need no such gap; these follow a
- * paragraph inside the same row and do.
+ * The wrapper's 10px top margin separates the row from the description text
+ * above it.
  */
 /**
  * "Installed, but not switched on yet."
@@ -144,27 +168,26 @@ if ($scfIsOff) {
     $scfName .= ' - Mod Not Turned On';
 }
 
-$scfButtonGap = '6px';
+$scfButtonGap = '4px';
+$scfButtonStyle = ' style="margin:0 ' . $scfButtonGap . ' 0 0;padding-left:8px;padding-right:8px"';
+$scfButton = static function ($url, $label, $newTab) use ($scfButtonStyle) {
+    return '<a href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '"'
+        . ($newTab ? ' target="_blank" rel="noopener noreferrer"' : '')
+        . ' class="btn btn-primary" role="button"' . $scfButtonStyle . '>' . $label . '</a>';
+};
 
 $scfLinks =
     '<div style="margin:10px 0 0;padding:0 0 0 ' . $scfButtonGap . '">'
-    . '<a href="' . $scfReadmeUrl . '" target="_blank" rel="noopener noreferrer"'
-    . ' class="btn btn-primary" role="button"'
-    . ' style="margin:0 ' . $scfButtonGap . ' 0 0">Read Me</a>'
-    . '<a href="' . $scfGithubUrl . '" target="_blank" rel="noopener noreferrer"'
-    . ' class="btn btn-primary" role="button"'
-    . ' style="margin:0 ' . $scfButtonGap . ' 0 0">GitHub</a>'
-    // The support thread, a third button (every free dbltoe plugin has one, 2026-10-05).
+    . $scfButton($scfReadmeUrl, 'ReadMe', true)
+    . ($scfSettingsUrl !== '' ? $scfButton($scfSettingsUrl, 'Settings', false) : '')
+    // The support thread (every free dbltoe plugin has one, 2026-10-05).
     // Renders nothing while $scfForumUrl is empty.
-    . ($scfForumUrl !== ''
-        ? '<a href="' . $scfForumUrl . '" target="_blank" rel="noopener noreferrer"'
-          . ' class="btn btn-primary" role="button"'
-          . ' style="margin:0 ' . $scfButtonGap . ' 0 0">Forum Support Thread</a>'
-        : '')
+    . ($scfForumUrl !== '' ? $scfButton($scfForumUrl, 'Forum Thread', true) : '')
+    . $scfButton($scfGithubUrl, 'GitHub', true)
     . '</div>';
 
 return [
-    'pluginVersion' => 'v1.0.3',
+    'pluginVersion' => 'v1.0.4',
     'pluginName' => $scfName,
     'pluginDescription' =>
         'Adds an owner-configurable block to the storefront footer: social-media icons, '

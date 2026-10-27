@@ -16,7 +16,7 @@ zc_plugins/SocialContactFooter/
 Upload it so it lands at:
 
 ```
-<your store root>/zc_plugins/SocialContactFooter/v1.0.3/
+<your store root>/zc_plugins/SocialContactFooter/v1.0.4/
 ```
 
 That directory should contain `manifest.php`, `readme.html`, `changelog.txt`,
@@ -39,9 +39,10 @@ later.
 
 > Selecting the plugin shows an info panel on the right. Alongside the
 > description and the **Install / Uninstall / Disable** buttons you will find
-> **Read Me** and **GitHub** buttons. Read Me opens the full documentation, and
-> both work whether or not the plugin is installed — so you can read the manual
-> before committing to anything.
+> **ReadMe**, **Forum Thread** and **GitHub** buttons, plus **Settings** once
+> the plugin is installed. ReadMe opens the full documentation and works
+> whether or not the plugin is installed, so you can read the manual before
+> committing to anything.
 
 The installer creates a configuration group, adds the subscriber table, adds a
 **Footer Newsletter Subscribers** entry to the Tools menu, and registers two
@@ -136,7 +137,7 @@ the template from a current release, or add this where you want the block:
 The stylesheet is not loading. View source and check this URL does not 404:
 
 ```
-zc_plugins/SocialContactFooter/v1.0.3/catalog/includes/templates/template_default/css/social_contact_footer.css
+zc_plugins/SocialContactFooter/v1.0.4/catalog/includes/templates/template_default/css/social_contact_footer.css
 ```
 
 Zen Cart's shipped `zc_plugins/.htaccess` denies everything then explicitly
@@ -150,7 +151,7 @@ rule permitting those types under `zc_plugins/`.
 The gate script is not loading. Same check as above, for:
 
 ```
-zc_plugins/SocialContactFooter/v1.0.3/catalog/includes/templates/template_default/jscript/social_contact_footer.js
+zc_plugins/SocialContactFooter/v1.0.4/catalog/includes/templates/template_default/jscript/social_contact_footer.js
 ```
 
 This is deliberately not fatal: the button is rendered visible by the server and
@@ -198,9 +199,9 @@ which: **No**, **Invited**, or **Registered**.
 Log out and back in. If they are still missing, uninstall and re-install — that
 rewrites the `admin_pages` records.
 
-### The Read Me link in Plugin Manager 404s
+### The ReadMe link in Plugin Manager 404s
 
 Same cause as the stylesheet: your server is not serving files from
 `zc_plugins/`. The file is in your local copy of the plugin at
-`zc_plugins/SocialContactFooter/v1.0.3/readme.html` and opens in any browser by
+`zc_plugins/SocialContactFooter/v1.0.4/readme.html` and opens in any browser by
 double-clicking it.
