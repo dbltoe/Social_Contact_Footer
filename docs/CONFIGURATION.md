@@ -35,7 +35,7 @@ block as it was instead of painting a gray slab across your footer.
 
 | Setting | Default | What it does |
 |---|---|---|
-| **Icons Heading:** | *(empty)* | Empty uses the translatable default, *Follow us*. A single space shows no heading. |
+| **Icons Heading:** | *(empty)* | Empty uses the translatable default, *Follow Us*. A single space shows no heading. |
 | **Icons Size On Desktop:** | `32` | Pixels, on screens wider than 767px. Anything outside 12–128 falls back to 32. |
 | **Icons Size On Mobile:** | `24` | Pixels, on screens 767px and narrower. Smaller usually works better — footer icons compete for a short screen. |
 | **Icons Color Style:** | `Brand colors` | `Brand colors`, `Monochrome`, or `Inherit`. Inherit draws them in your template's own text color, which is usually right for a dark footer. |

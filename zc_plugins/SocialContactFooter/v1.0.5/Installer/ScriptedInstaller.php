@@ -753,7 +753,7 @@ class ScriptedInstaller extends ScriptedInstallBase
                 'key' => 'SCF_ICONS_HEADING',
                 'title' => 'Icons Heading:',
                 'value' => '',
-                'description' => 'Heading shown above the icon row. Leave empty to use the translatable default (<em>Follow us</em>). Enter a single space to show no heading at all.',
+                'description' => 'Heading shown above the icon row. Leave empty to use the translatable default (<em>Follow Us</em>). Enter a single space to show no heading at all.',
                 'sort_order' => 100,
                 'set_function' => '',
             ],

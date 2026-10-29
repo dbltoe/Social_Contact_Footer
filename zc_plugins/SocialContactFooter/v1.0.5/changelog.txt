@@ -1,6 +1,24 @@
 Social Contact Footer -- changelog
 ==================================
 
+v1.0.5
+------
+Fixed
+- An invited customer's first sign-in showed a confusing message. The
+  invitation's empty placeholder address made Zen Cart send them to edit it
+  with "Sorry, but we no longer accept billing or shipping addresses in """.
+  Now they're sent to add their address with "Your account has no address on
+  file. Please add your address to continue." Their first address replaces
+  the placeholder, becomes primary, and they go on to the page they were
+  heading for. A customer who already added an address while the placeholder
+  stayed primary is repaired automatically at sign-in.
+
+Changed
+- The default icon heading is now "Follow Us" (was "Follow us"). Stores that
+  typed their own heading are unaffected.
+- The Forum Thread button and the docs link the current support thread,
+  https://www.zen-cart.com/threads/207241.
+
 v1.0.4
 ------
 Plugin Manager only. Nothing changes on the storefront or in the settings.

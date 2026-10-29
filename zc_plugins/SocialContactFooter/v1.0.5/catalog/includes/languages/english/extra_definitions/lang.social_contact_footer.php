@@ -17,7 +17,7 @@
 
 $define = [
     /* Headings ------------------------------------------------------------ */
-    'SCF_DEFAULT_ICONS_HEADING' => 'Follow us',
+    'SCF_DEFAULT_ICONS_HEADING' => 'Follow Us',
 
     /* How the store's own name is made possessive. Kept separate so a
      * translator can change the rule, drop it, or special-case a name that
@@ -81,6 +81,8 @@ $define = [
     /* Registration invitations ------------------------------------------- */
     'SCF_INVITE_ACCEPTED' => 'Your account is now active. Please sign in below using your E-Mail address and the password we sent you.',
     'SCF_INVITE_ALREADY_ACCEPTED' => 'That account is already active. Please sign in below.',
+    // Shown on the Add Address page when an invited customer has no address yet.
+    'SCF_ADDRESS_GATE_NEEDED' => 'Your account has no address on file. Please add your address to continue.',
 
     /* Subscriber emails.
      * The placeholders are the same in every template:

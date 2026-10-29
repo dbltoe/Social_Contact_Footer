@@ -127,7 +127,7 @@ Full instructions, including upgrading and uninstalling, are in
 Selecting the plugin in Plugin Manager shows an info panel with **ReadMe**,
 **Settings** (once installed), **Forum Thread** and **GitHub** buttons beside
 Install / Uninstall / Disable. ReadMe opens
-[`readme.html`](zc_plugins/SocialContactFooter/v1.0.4/readme.html) — a
+[`readme.html`](zc_plugins/SocialContactFooter/v1.0.5/readme.html) — a
 self-contained offline manual covering every setting — so a store owner never
 has to go looking elsewhere. Settings opens the plugin's Configuration page;
 the other three work before the plugin is installed.
@@ -204,7 +204,7 @@ advisory rather than passed silently.
 ## Support
 
 Questions and general help: the
-[Forum Support Thread](https://www.zen-cart.com/showthread.php/231169-Social-Contact-Footer?p=1412052#post1412052)
+[Forum Support Thread](https://www.zen-cart.com/threads/207241)
 at zen-cart.com, which is where most Zen Cart store owners look first.
 
 Something actually broken: open an

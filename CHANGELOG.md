@@ -3,6 +3,27 @@
 All notable changes to this project are recorded here. This project follows
 [Semantic Versioning](https://semver.org/).
 
+## [1.0.5] — 2026-10-29
+
+### Fixed
+
+- **An invited customer's first sign-in showed a confusing message.** An
+  invitation creates the account with an empty placeholder address, and Zen
+  Cart sent the new customer to edit it with "Sorry, but we no longer accept
+  billing or shipping addresses in """. Now they're sent to add their address
+  with "Your account has no address on file. Please add your address to
+  continue." Their first address replaces the placeholder, becomes their
+  primary address, and they go on to the page they were heading for. A
+  customer who already added an address while the placeholder stayed primary
+  is repaired automatically at sign-in, with no extra step.
+
+### Changed
+
+- **The default icon heading is now "Follow Us"** (it was "Follow us"). Stores
+  that typed their own heading are unaffected.
+- **The Forum Thread button and the docs link the current support thread**,
+  https://www.zen-cart.com/threads/207241, instead of the old forum address.
+
 ## [1.0.4] — 2026-10-27
 
 Plugin Manager only. Nothing changes on the storefront or in the settings.
@@ -253,6 +274,7 @@ its customers. The newsletter signup is an addition rather than the point.
 - PHP: lint and the full harness suite on 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5.
 - Accessibility: WCAG 2.1 AA, with one documented brand-color deviation.
 
+[1.0.5]: https://github.com/dbltoe/Social_Contact_Footer/releases/tag/v1.0.5
 [1.0.4]: https://github.com/dbltoe/Social_Contact_Footer/releases/tag/v1.0.4
 [1.0.3]: https://github.com/dbltoe/Social_Contact_Footer/releases/tag/v1.0.3
 [1.0.2]: https://github.com/dbltoe/Social_Contact_Footer/releases/tag/v1.0.2

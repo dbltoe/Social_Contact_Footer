@@ -30,7 +30,7 @@
  * refreshes it there (at Install, Upgrade and Uninstall). The one
  * state-dependent part, the Settings button, is handled below.
  */
-$scfPluginDir = 'zc_plugins/SocialContactFooter/v1.0.4/';
+$scfPluginDir = 'zc_plugins/SocialContactFooter/v1.0.5/';
 $scfReadmeUrl = (defined('DIR_WS_CATALOG') ? DIR_WS_CATALOG : '/') . $scfPluginDir . 'readme.html';
 $scfGithubUrl = 'https://github.com/dbltoe/Social_Contact_Footer';
 
@@ -56,7 +56,7 @@ $scfGithubUrl = 'https://github.com/dbltoe/Social_Contact_Footer';
  * accumulates. Somebody arriving from Plugin Manager should land on the former.
  * Anyone who then wants the discussion is one click from it.
  */
-$scfForumUrl = 'https://www.zen-cart.com/showthread.php/231169-Social-Contact-Footer?p=1412052#post1412052';
+$scfForumUrl = 'https://www.zen-cart.com/threads/207241';
 
 /**
  * The Settings button: this plugin's Configuration page, shown only once the
@@ -187,7 +187,7 @@ $scfLinks =
     . '</div>';
 
 return [
-    'pluginVersion' => 'v1.0.4',
+    'pluginVersion' => 'v1.0.5',
     'pluginName' => $scfName,
     'pluginDescription' =>
         'Adds an owner-configurable block to the storefront footer: social-media icons, '
