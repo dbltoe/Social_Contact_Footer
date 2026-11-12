@@ -3,6 +3,21 @@
 All notable changes to this project are recorded here. This project follows
 [Semantic Versioning](https://semver.org/).
 
+## [1.0.6] — 2026-11-11
+
+Nothing changes on the storefront or in the settings.
+
+### Changed
+
+- **License: GNU General Public License, version 3** (was version 2).
+- **readme.html is replaced by README.md.** The ReadMe button in Plugin
+  Manager opens it inside the admin, for superusers only, in its own window
+  (`index.php?cmd=social_contact_footer_readme`); it is no longer a public
+  file under `zc_plugins/`. The same README.md is at the root of the download.
+
+Upgrading: put the v1.0.6 folder beside the old one and click **Upgrade** in
+Admin > Modules > Plugin Manager. Your settings and subscribers are kept.
+
 ## [1.0.5] — 2026-10-29
 
 ### Fixed
@@ -274,6 +289,7 @@ its customers. The newsletter signup is an addition rather than the point.
 - PHP: lint and the full harness suite on 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5.
 - Accessibility: WCAG 2.1 AA, with one documented brand-color deviation.
 
+[1.0.6]: https://github.com/dbltoe/Social_Contact_Footer/releases/tag/v1.0.6
 [1.0.5]: https://github.com/dbltoe/Social_Contact_Footer/releases/tag/v1.0.5
 [1.0.4]: https://github.com/dbltoe/Social_Contact_Footer/releases/tag/v1.0.4
 [1.0.3]: https://github.com/dbltoe/Social_Contact_Footer/releases/tag/v1.0.3

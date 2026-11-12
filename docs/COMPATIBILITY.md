@@ -15,7 +15,7 @@ Not by assertion. Three checks run against the real thing:
 |---|---|
 | **Zen Cart API** | Every core symbol the plugin uses — functions, constants, notifiers, classes, installer methods — is extracted from the source and looked up in all six release branches (`v158`, `2.0`, `2.1`, `2.2`, `2.3`, `master`) with `git grep`. 58 symbols, all present. |
 | **PHP** | Lint plus the full harness suite on 7.4, 8.0, 8.1, 8.2, 8.3, 8.4 and 8.5. Clean, with zero diagnostics at `E_ALL`. |
-| **Accessibility** | WCAG 2.1 AA checks over the rendered storefront block and the HTML readme, including contrast computed from the declared colors. |
+| **Accessibility** | WCAG 2.1 AA checks over the rendered storefront block and the admin page, including contrast computed from the declared colors. |
 
 A symbol that exists in `master` but not `v158` is exactly the failure mode
 that produces a plugin which works for the developer and fatals for half the
@@ -106,9 +106,10 @@ them, so that is where the constants live, wrapped in `defined()` guards.
 directory first and then each installed plugin's via
 `FileSystem::findPluginAdminPage()`. Unchanged from v1.5.8 to v3.0.0-dev.
 
-Note this only resolves for *installed* plugins — which is why the ReadMe link
-in Plugin Manager points at the `.html` file directly rather than at an admin
-page. It has to work before installation.
+Note this only resolves for *installed* plugins. The ReadMe button in Plugin
+Manager uses this route (`index.php?cmd=social_contact_footer_readme`), so the
+guide opens inside the admin once the plugin is installed and enabled; before
+that, the same `README.md` is at the root of the download.
 
 ### Autoload breakpoint 178
 
@@ -164,10 +165,13 @@ Two consequences the plugin has to live with:
   `admin/includes/functions/extra_functions/social_contact_footer_admin.php`,
   which every release loads on every admin page, and cleared by the uninstaller
   — because once uninstalled, nothing of ours loads to fix it.
-- **The ReadMe URL does not self-correct on v1.5.8–v2.1.** It is built from
-  `DIR_WS_CATALOG` at scan time, so a store that later moves keeps the old path
-  in `description` until the plugin is re-installed. Uninstall + install fixes
-  it; nothing else will.
+- **Whether the ReadMe button is shown is captured once on v1.5.8–v2.1.** The
+  button is left out for an admin who is not a superuser, and those releases
+  keep the `description` they first saw (the installer saves it again at
+  Install, Upgrade and Uninstall). So the admin ReadMe page checks for a
+  superuser itself and never relies on the button being hidden. The link is
+  relative (`index.php?cmd=social_contact_footer_readme`), so it survives a
+  store move or an admin-folder rename.
 
 ### `pluginName` is varchar(64), and the plugin list echoes it unescaped
 

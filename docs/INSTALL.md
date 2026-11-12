@@ -16,10 +16,10 @@ zc_plugins/SocialContactFooter/
 Upload it so it lands at:
 
 ```
-<your store root>/zc_plugins/SocialContactFooter/v1.0.5/
+<your store root>/zc_plugins/SocialContactFooter/v1.0.6/
 ```
 
-That directory should contain `manifest.php`, `readme.html`, `changelog.txt`,
+That directory should contain `manifest.php`, `README.md`, `changelog.txt`,
 and the `Installer/`, `admin/`, `catalog/` and `shared/` sub-directories.
 
 Nothing goes anywhere else. The plugin does not drop files into your `admin/`,
@@ -40,9 +40,10 @@ later.
 > Selecting the plugin shows an info panel on the right. Alongside the
 > description and the **Install / Uninstall / Disable** buttons you will find
 > **ReadMe**, **Forum Thread** and **GitHub** buttons, plus **Settings** once
-> the plugin is installed. ReadMe opens the full documentation and works
-> whether or not the plugin is installed, so you can read the manual before
-> committing to anything.
+> the plugin is installed. ReadMe opens the full documentation (`README.md`)
+> inside the admin, in its own window, for superusers, once the plugin is
+> installed and enabled. Before that, the same `README.md` is at the root of
+> the download, so you can read the manual before committing to anything.
 
 The installer creates a configuration group, adds the subscriber table, adds a
 **Footer Newsletter Subscribers** entry to the Tools menu, and registers two
@@ -76,9 +77,10 @@ Every setting is documented in [CONFIGURATION.md](CONFIGURATION.md).
 
 ## Upgrading
 
-1. Upload the new version directory alongside the old one, e.g.
-   `zc_plugins/SocialContactFooter/v1.1.0/`. **Do not delete the old one yet** —
-   Plugin Manager needs both to offer the upgrade.
+1. Upload the new version directory alongside the old one, so that both the
+   old directory and `zc_plugins/SocialContactFooter/v1.0.6/` are present.
+   **Do not delete the old one yet** — Plugin Manager needs both to offer the
+   upgrade.
 2. **Modules → Plugin Manager → Upgrade.**
 3. Once it reports success, the old version directory can be deleted.
 
@@ -137,7 +139,7 @@ the template from a current release, or add this where you want the block:
 The stylesheet is not loading. View source and check this URL does not 404:
 
 ```
-zc_plugins/SocialContactFooter/v1.0.5/catalog/includes/templates/template_default/css/social_contact_footer.css
+zc_plugins/SocialContactFooter/v1.0.6/catalog/includes/templates/template_default/css/social_contact_footer.css
 ```
 
 Zen Cart's shipped `zc_plugins/.htaccess` denies everything then explicitly
@@ -151,7 +153,7 @@ rule permitting those types under `zc_plugins/`.
 The gate script is not loading. Same check as above, for:
 
 ```
-zc_plugins/SocialContactFooter/v1.0.5/catalog/includes/templates/template_default/jscript/social_contact_footer.js
+zc_plugins/SocialContactFooter/v1.0.6/catalog/includes/templates/template_default/jscript/social_contact_footer.js
 ```
 
 This is deliberately not fatal: the button is rendered visible by the server and
@@ -199,9 +201,11 @@ which: **No**, **Invited**, or **Registered**.
 Log out and back in. If they are still missing, uninstall and re-install — that
 rewrites the `admin_pages` records.
 
-### The ReadMe link in Plugin Manager 404s
+### The ReadMe button is missing, or its page will not open
 
-Same cause as the stylesheet: your server is not serving files from
-`zc_plugins/`. The file is in your local copy of the plugin at
-`zc_plugins/SocialContactFooter/v1.0.5/readme.html` and opens in any browser by
-double-clicking it.
+The ReadMe button is shown to superusers only, and the page it opens
+(`index.php?cmd=social_contact_footer_readme`) exists only while the plugin is
+installed and enabled; anyone else is sent to the admin's access-denied page.
+The same guide is `README.md` at the root of the download and in your local
+copy of the plugin at `zc_plugins/SocialContactFooter/v1.0.6/README.md`, and
+opens in any text editor.
