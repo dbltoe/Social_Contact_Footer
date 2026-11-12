@@ -130,7 +130,6 @@ The layout is fixed by design: a heading, then one row holding *E-Mail Address:*
 | Setting | Default | What it does |
 | --- | --- | --- |
 | Show Newsletter Signup Form? | `false` | Shows the form beneath the blog line. |
-| Show Newsletter Signup Form? | *empty* | Empty uses the default, *Would You Like to Receive Our Newsletter?* A single space shows no heading. |
 | Ask HTML Or TEXT-Only? | `true` | Shows the *E-Mail Preference:* choice. **Neither option is pre-selected** and there is no “default format” setting — see Opt-in and the law. Set to `false` and the question is not asked; everyone is then recorded as `TEXT`, which is also Zen Cart’s own default for a new account. |
 | Enable Spam Trap? | `true` | A hidden honeypot field plus a minimum time-on-form check. Genuine visitors never see it. |
 | Show Privacy Link? | `true` | Shows *How We Handle Your Details* under the form. |
