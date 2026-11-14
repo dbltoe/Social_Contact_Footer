@@ -19,7 +19,7 @@
  * it has to run on whatever a Zen Cart storefront happens to be serving.
  *
  * @package  SocialContactFooter
- * @license  https://www.gnu.org/licenses/gpl-3.0.html GNU General Public License v3.0
+ * @license  https://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License v2.0
  */
 (function () {
     'use strict';

@@ -1,6 +1,6 @@
 # Social Contact Footer
 
-Version 1.0.6 · Zen Cart 1.5.8 through 3.0.0 · PHP 7.4 through 8.5 · GPL v3 · by My Zen Cart Host (dbltoe)
+Version 1.0.6 · Zen Cart 1.5.8 through 3.0.0 · PHP 7.4 through 8.5 · GPL v2 · by My Zen Cart Host (dbltoe)
 
 Put your social-media accounts and your blog in front of your customers, from the storefront footer. With a newsletter signup underneath, if you want one.
 
@@ -370,7 +370,7 @@ The format labels `HTML` and `TEXT-Only` match Zen Cart’s own account page, be
 
 Uninstall followed by Install gives the same result if you prefer it. Your subscriber table is not dropped either way unless you have opted in.
 
-**Version 1.0.6** moves the plugin to the GNU General Public License, version 3, and replaces the old HTML readme with this guide: the ReadMe button in Plugin Manager now opens it inside the admin, for superusers, in its own window. Nothing changes on the storefront or in the settings.
+**Version 1.0.6** replaces the old HTML readme with this guide: the ReadMe button in Plugin Manager now opens it inside the admin, for superusers, in its own window. Nothing changes on the storefront or in the settings.
 
 ## Uninstalling
 
@@ -448,10 +448,10 @@ Source, issues and newer versions are on GitHub (https://github.com/dbltoe/Socia
 
 ## Changelog
 
-See `CHANGELOG.md`. Version 1.0.6 moves the plugin to the GNU General Public License, version 3, and replaces the old HTML readme with this guide, opened from the ReadMe button in Plugin Manager.
+See `CHANGELOG.md`. Version 1.0.6 replaces the old HTML readme with this guide, opened from the ReadMe button in Plugin Manager.
 
 ## License
 
-Social Contact Footer is free software under the GNU General Public License, version 3 (https://www.gnu.org/licenses/gpl-3.0.html); the full text is in `LICENSE`. Copyright © 2026 My Zen Cart Host (dbltoe).
+Social Contact Footer is free software under the GNU General Public License, version 2 (https://www.gnu.org/licenses/old-licenses/gpl-2.0.html); the full text is in `LICENSE`. Copyright © 2026 My Zen Cart Host (dbltoe).
 
 The bundled icon glyphs are original simplified drawings and are not the official logos of the services they represent. All trademarks belong to their respective owners, who are not affiliated with this plugin and do not endorse it.

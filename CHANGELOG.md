@@ -9,7 +9,6 @@ Nothing changes on the storefront or in the settings.
 
 ### Changed
 
-- **License: GNU General Public License, version 3** (was version 2).
 - **readme.html is replaced by README.md.** The ReadMe button in Plugin
   Manager opens it inside the admin, for superusers only, in its own window
   (`index.php?cmd=social_contact_footer_readme`); it is no longer a public

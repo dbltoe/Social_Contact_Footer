@@ -27,7 +27,7 @@
  * fragment; anything containing "/" or ":" is treated as a whole URL.
  *
  * @package  SocialContactFooter
- * @license  https://www.gnu.org/licenses/gpl-3.0.html GNU General Public License v3.0
+ * @license  https://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License v2.0
  */
 // Not reachable directly. Zen Cart's shipped zc_plugins/.htaccess denies .php
 // here, but that is Apache-only -- on nginx, or Apache with AllowOverride None,
